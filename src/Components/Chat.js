@@ -22,7 +22,7 @@ export default function Chat() {
                   className={`flex ${
                     profile == index
                       ? "bg-gray-800 rounded-lg"
-                      : "hover:bg-gray-700 hover:rounded-lg"
+                      : "hover:bg-gray-600 hover:rounded-lg"
                   } `}
                   onClick={() => setProfile(index)}
                 >
