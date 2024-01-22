@@ -49,7 +49,7 @@ export default function Chat() {
 
         <div class="section-2 overflow-auto w-6/12 ">
           <div className="Navbar sticky top-0 bg-gray-700 border-b border-gray-800 w-full">
-            <div className="Profile-section flex m-1 p-2 hover:bg-gray-700 hover:rounded-lg w-1/3">
+            <div className="Profile-section flex m-1 p-2 hover:bg-gray-600 hover:rounded-lg w-1/3">
               <img
                 src={UserData[profile].image}
                 alt={UserData[profile].name}
