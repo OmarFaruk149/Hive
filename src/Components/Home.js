@@ -2,6 +2,9 @@ import PostContainer from "./PostContainer";
 import Contacts from "./Contacts";
 import React, { useState } from "react";
 import Modal from "react-modal";
+import dp from "../images/fb dp.jpg"
+import image from "../images/image.svg"
+
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
@@ -26,7 +29,7 @@ export default function Home() {
           <div className="bg-gray-800 p-4 mx-5 rounded-lg mt-6 ">
             <div className="flex items-center space-x-4 mb-4">
               <img
-                src="https://i.pinimg.com/736x/07/eb/9b/07eb9b67b257d508317dd7f83cd43a27.jpg"
+                src={dp}
                 alt="User Avatar"
                 className="w-8 h-8 rounded-full"
               />
@@ -40,13 +43,13 @@ export default function Home() {
             <div className="flex items-center space-x-4">
               <button className="flex items-center space-x-2">
                 <img
-                  src="https://cdn-icons-png.flaticon.com/128/1829/1829552.png"
+                  src={image}
                   title="picture icons"
                   alt="Photos/Videos"
-                  className="h-6 w-6"
+                  className="h-6 w-6 bg-gray-500 rounded-lg "
                   onClick={handleButtonClick}
                 />
-                <span className=" font-semibold">Photos/Videos</span>
+                <span className=" font-semibold text-white">Photos/Videos</span>
               </button>
               <Modal
                 isOpen={isModalOpen}

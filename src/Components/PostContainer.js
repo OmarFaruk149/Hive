@@ -1,7 +1,28 @@
 import React, { useState, useEffect } from "react";
 import Post from "./Post";
-import MyCover from "../images/IMG_20231128_184731-01.jpeg";
 import DP from "../images/fb dp.jpg";
+import hamim from "../images/hamim.jpg";
+import hamim_post from "../images/hamim_post.jpg";
+import prottoy from "../images/prottoy.jpg";
+import prottoy_post from "../images/prottoy_post.jpg";
+import saif from "../images/saif.png";
+import ragib from "../images/ragib.png";
+import mahin from "../images/mahin.jpg";
+import mahin_post from "../images/mahin_post.jpg";
+
+import dp1 from "../images/dp1.jpg";
+import dp2 from "../images/dp2.webp";
+import dp3 from "../images/dp3.jpg";
+
+import post1 from "../images/post1.jpg";
+import post2 from "../images/post2.jpeg";
+import post3 from "../images/post3.jpeg";
+import post4 from "../images/post4.jpg";
+import post5 from "../images/post5.jpg";
+import post6 from "../images/post6.jpg";
+import post7 from "../images/post7.jpg";
+import post8 from "../images/post8.jpg";
+import post9 from "../images/post9.jpg";
 
 export default function PostContainer() {
   const [data, setData] = useState([]);
@@ -11,12 +32,10 @@ export default function PostContainer() {
       {
         post_ID: 1,
         user_ID: 123,
-        user_img:
-          "https://i.pinimg.com/736x/07/eb/9b/07eb9b67b257d508317dd7f83cd43a27.jpg",
-        user_name: "John Doe",
-        description: "Cherry Blossom",
-        post_img:
-          "https://images.squarespace-cdn.com/content/v1/5ae6eda77e3c3a355f92cc88/8bcc05d1-cced-46b1-81ac-7ff336d4cb22/April+evening+in+Kyoto.+Credit+Japan+Rail.jpeg",
+        user_img: hamim,
+        user_name: "Albert Hamim",
+        description: "Weather Demand ?",
+        post_img: hamim_post,
         Like_count: 365,
       },
       {
@@ -24,180 +43,91 @@ export default function PostContainer() {
         user_ID: 123,
         user_img: DP,
         user_name: "Omar Faruk",
-        description: "Library is the place where sounds are locked by words!",
-        post_img: MyCover,
+        description: ".....................!",
+        post_img: post1 ,
         Like_count: 204,
       },
       {
         post_ID: 3,
         user_ID: 123,
-        user_img:
-          "https://pics.craiyon.com/2023-10-21/3a95f47af61a425098c85f40c702f053.webp",
-        user_name: "Gojo",
+        user_img:ragib,
+        user_name: "Ragib Hasan",
         description: "Across heaven and earth I alone am the honoured one",
-        post_img: "",
+        post_img: post2,
         Like_count: 747,
       },
       {
         post_ID: 1,
         user_ID: 123,
-        user_img:
-          "https://i.pinimg.com/736x/07/eb/9b/07eb9b67b257d508317dd7f83cd43a27.jpg",
-        user_name: "John Doe",
-        description: "Cherry Blossom",
-        post_img:
-          "https://images.squarespace-cdn.com/content/v1/5ae6eda77e3c3a355f92cc88/8bcc05d1-cced-46b1-81ac-7ff336d4cb22/April+evening+in+Kyoto.+Credit+Japan+Rail.jpeg",
-        Like_count: 365,
+        user_img:mahin,
+        user_name: "SK Mahin",
+        description: "Alhamdulillah!! An award from honourable Prime Minister Sheikh Hasina.Creative Talent Hunt-2018 \n National award giving ceremony at Shapla Hall,Dhaka📡",
+        post_img:mahin_post,
+        Like_count: 3876,
+      }, {
+        post_ID: 7,
+        user_ID: 1243,
+        user_img:prottoy,
+        user_name: "Prattoy Mondal",
+        description: "Feeling Lonly :)",
+        post_img:prottoy_post,
+        Like_count: 503,
       },
       {
-        post_ID: 2,
-        user_ID: 123,
-        user_img:
-          "https://i1.sndcdn.com/avatars-000267690351-kllfdq-t500x500.jpg",
+        post_ID: 93,
+        user_ID: 1233,
+        user_img:dp1,
         user_name: "Chanyeol",
-        description: "Blue Oblivion",
-        post_img:
-          "https://i.pinimg.com/474x/a6/ff/34/a6ff34d93aba6ca2f19d273b02027e79.jpg",
+        description: "Keep Smiling :)",
+        post_img:post3,
         Like_count: 204,
       },
       {
         post_ID: 3,
         user_ID: 123,
-        user_img:
-          "https://pics.craiyon.com/2023-10-21/3a95f47af61a425098c85f40c702f053.webp",
+        user_img:dp2,
         user_name: "Gojo",
         description: "Across heaven and earth I alone am the honoured one",
-        post_img: "",
+        post_img: post4,
         Like_count: 747,
       },
       {
         post_ID: 1,
         user_ID: 123,
-        user_img:
-          "https://i.pinimg.com/736x/07/eb/9b/07eb9b67b257d508317dd7f83cd43a27.jpg",
+        user_img:dp3,
         user_name: "John Doe",
         description: "Cherry Blossom",
-        post_img:
-          "https://images.squarespace-cdn.com/content/v1/5ae6eda77e3c3a355f92cc88/8bcc05d1-cced-46b1-81ac-7ff336d4cb22/April+evening+in+Kyoto.+Credit+Japan+Rail.jpeg",
+        post_img:post5,
         Like_count: 365,
-      },
-      {
+      },{
         post_ID: 2,
         user_ID: 123,
-        user_img:
-          "https://i1.sndcdn.com/avatars-000267690351-kllfdq-t500x500.jpg",
+        user_img:dp1,
         user_name: "Chanyeol",
-        description: "Blue Oblivion",
-        post_img:
-          "https://i.pinimg.com/474x/a6/ff/34/a6ff34d93aba6ca2f19d273b02027e79.jpg",
+        description: ":)",
+        post_img:post6,
         Like_count: 204,
       },
       {
         post_ID: 3,
         user_ID: 123,
-        user_img:
-          "https://pics.craiyon.com/2023-10-21/3a95f47af61a425098c85f40c702f053.webp",
+        user_img:dp2,
         user_name: "Gojo",
         description: "Across heaven and earth I alone am the honoured one",
-        post_img: "",
+        post_img: post7,
         Like_count: 747,
       },
       {
         post_ID: 1,
         user_ID: 123,
-        user_img:
-          "https://i.pinimg.com/736x/07/eb/9b/07eb9b67b257d508317dd7f83cd43a27.jpg",
+        user_img:dp3,
         user_name: "John Doe",
         description: "Cherry Blossom",
-        post_img:
-          "https://images.squarespace-cdn.com/content/v1/5ae6eda77e3c3a355f92cc88/8bcc05d1-cced-46b1-81ac-7ff336d4cb22/April+evening+in+Kyoto.+Credit+Japan+Rail.jpeg",
+        post_img:post8,
         Like_count: 365,
       },
-      {
-        post_ID: 2,
-        user_ID: 123,
-        user_img:
-          "https://i1.sndcdn.com/avatars-000267690351-kllfdq-t500x500.jpg",
-        user_name: "Chanyeol",
-        description: "Blue Oblivion",
-        post_img:
-          "https://i.pinimg.com/474x/a6/ff/34/a6ff34d93aba6ca2f19d273b02027e79.jpg",
-        Like_count: 204,
-      },
-      {
-        post_ID: 3,
-        user_ID: 123,
-        user_img:
-          "https://pics.craiyon.com/2023-10-21/3a95f47af61a425098c85f40c702f053.webp",
-        user_name: "Gojo",
-        description: "Across heaven and earth I alone am the honoured one",
-        post_img: "",
-        Like_count: 747,
-      },
-      {
-        post_ID: 1,
-        user_ID: 123,
-        user_img:
-          "https://i.pinimg.com/736x/07/eb/9b/07eb9b67b257d508317dd7f83cd43a27.jpg",
-        user_name: "John Doe",
-        description: "Cherry Blossom",
-        post_img:
-          "https://images.squarespace-cdn.com/content/v1/5ae6eda77e3c3a355f92cc88/8bcc05d1-cced-46b1-81ac-7ff336d4cb22/April+evening+in+Kyoto.+Credit+Japan+Rail.jpeg",
-        Like_count: 365,
-      },
-      {
-        post_ID: 2,
-        user_ID: 123,
-        user_img:
-          "https://i1.sndcdn.com/avatars-000267690351-kllfdq-t500x500.jpg",
-        user_name: "Chanyeol",
-        description: "Blue Oblivion",
-        post_img:
-          "https://i.pinimg.com/474x/a6/ff/34/a6ff34d93aba6ca2f19d273b02027e79.jpg",
-        Like_count: 204,
-      },
-      {
-        post_ID: 3,
-        user_ID: 123,
-        user_img:
-          "https://pics.craiyon.com/2023-10-21/3a95f47af61a425098c85f40c702f053.webp",
-        user_name: "Gojo",
-        description: "Across heaven and earth I alone am the honoured one",
-        post_img: "",
-        Like_count: 747,
-      },
-      {
-        post_ID: 1,
-        user_ID: 123,
-        user_img:
-          "https://i.pinimg.com/736x/07/eb/9b/07eb9b67b257d508317dd7f83cd43a27.jpg",
-        user_name: "John Doe",
-        description: "Cherry Blossom",
-        post_img:
-          "https://images.squarespace-cdn.com/content/v1/5ae6eda77e3c3a355f92cc88/8bcc05d1-cced-46b1-81ac-7ff336d4cb22/April+evening+in+Kyoto.+Credit+Japan+Rail.jpeg",
-        Like_count: 365,
-      },
-      {
-        post_ID: 2,
-        user_ID: 123,
-        user_img:
-          "https://i1.sndcdn.com/avatars-000267690351-kllfdq-t500x500.jpg",
-        user_name: "Chanyeol",
-        description: "Blue Oblivion",
-        post_img:
-          "https://i.pinimg.com/474x/a6/ff/34/a6ff34d93aba6ca2f19d273b02027e79.jpg",
-        Like_count: 204,
-      },
-      {
-        post_ID: 3,
-        user_ID: 123,
-        user_img:
-          "https://pics.craiyon.com/2023-10-21/3a95f47af61a425098c85f40c702f053.webp",
-        user_name: "Gojo",
-        description: "Across heaven and earth I alone am the honoured one",
-        post_img: "",
-        Like_count: 747,
-      },
+      
+      
     ];
     setData(json);
   };
