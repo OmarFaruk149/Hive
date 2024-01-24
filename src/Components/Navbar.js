@@ -3,8 +3,9 @@ import Contact from "../images/contact-active.svg";
 import Home from "../images/home-svgrepo-com.svg";
 import Text from "../images/text-active.svg";
 import Logout from "../images/logout.svg";
-import UserProfile from "../images/use_profile_demo.svg";
+import UserProfile from "../images/fb dp.jpg";
 import Logo from "../images/logoHive.png";
+import Games from "../images/games.svg";
 
 export default function Navbar({ setValue, setLogin }) {
   return (
@@ -32,6 +33,17 @@ export default function Navbar({ setValue, setLogin }) {
               />
             </button>
             <button
+              className="Home cursor-pointer button bg-gray-400 hover:bg-gray-300 shadow-[0px_1px_15px_rgba(0,_196,_270,_1)] p-1 rounded-full"
+              title="Games"
+            >
+              <img
+                src={Games}
+                alt="Games"
+                className="h-8 w-8 p-1"
+                onClick={() => setValue("Games")}
+              />
+            </button>
+            <button
               className="contacts cursor-pointer  bg-gray-400 hover:bg-gray-300 shadow-[0px_1px_15px_rgba(0,_196,_270,_1)] p-1 rounded-full"
               title="User list"
               onClick={() => setValue("Friends")}
@@ -50,7 +62,7 @@ export default function Navbar({ setValue, setLogin }) {
               title="Profile"
               onClick={() => setValue("UserProfile")}
             >
-              <img src={UserProfile} alt="Profile" className="h-8 w-8 p-1" />
+              <img src={UserProfile} alt="Profile" className="h-8 w-8 rounded-full" />
             </button>
             <button
               className="logout cursor-pointer bg-gray-400 hover:bg-gray-300 shadow-[0px_1px_15px_rgba(0,_196,_270,_1)] p-1 rounded-full"

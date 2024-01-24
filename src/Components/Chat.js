@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import { UserData } from "./DataCollection/UserData";
+import { UserData } from "./UserDataFor";
 import "./Chat.css";
 import ProfileIcon from "../images/profile.svg";
 import NotificationIcon from "../images/notification.svg";
 import SearchIcon from "../images/search.svg";
-import { userData } from "./Friends/UserData";
 export default function Chat() {
   const [profile, setProfile] = useState(0);
 
@@ -19,21 +18,21 @@ export default function Chat() {
             {UserData.map((data, index) => (
               <>
                 <div
-                  className={`flex ${
+                  className={`flex hover:text-cyan-400 ${
                     profile == index
                       ? "bg-gray-800 rounded-lg"
                       : "hover:bg-gray-600 hover:rounded-lg"
                   } `}
                   onClick={() => setProfile(index)}
                 >
-                  <div className="p-1 h-10 w-14">
+                  <div className="p-1 m-1 h-14 w-14">
                     <img
                       src={data.image}
                       alt={data.name}
                       className="rounded-full"
                     />
                   </div>
-                  <div className="p-3">
+                  <div className="p-3 ">
                     <div className="text-xs font-bold font-sans">
                       {data.name}
                     </div>
@@ -49,13 +48,13 @@ export default function Chat() {
 
         <div class="section-2 overflow-auto w-6/12 ">
           <div className="Navbar sticky top-0 bg-gray-700 border-b border-gray-800 w-full">
-            <div className="Profile-section flex m-1 p-2 hover:bg-gray-600 hover:rounded-lg w-1/3">
+            <div className="Profile-section flex m-1 p-2 hover:text-cyan-500 hover:bg-gray-600 hover:rounded-lg w-1/3">
               <img
                 src={UserData[profile].image}
                 alt={UserData[profile].name}
                 className="h-10 w-10 rounded-full"
               />
-              <div className="py-2 px-1 font-sans font-bold text-gray-200">
+              <div className="py-2 px-1 mx-1 font-sans font-bold">
                 {UserData[profile].name}
               </div>
             </div>
@@ -76,9 +75,9 @@ export default function Chat() {
               <img
                 src={UserData[profile].image}
                 alt={UserData[profile].name}
-                className="rounded-full"
+                className="rounded-full h-36 w-36"
               />
-              <div className="font-bold text-sm p-1">
+              <div className="font-bold text-center text-sm p-1">
                 {UserData[profile].name}
               </div>
             </div>
@@ -127,7 +126,7 @@ export default function Chat() {
               <div className="flex-1">
                 <button
                   className="h-10 w-10 bg-gray-600 hover:bg-gray-500 rounded-full"
-                  onCanPlay={(event) => event.preventDefault()}
+                  onClick={(event) => event.preventDefault()}
                 >
                   <img src={SearchIcon} alt="Search" className="p-1" />
                 </button>
@@ -138,13 +137,13 @@ export default function Chat() {
             </div>
           </div>{" "}
           {/* end of profile section */}
-          <div className="w-full h-10 my-2 hover:bg-gray-600 p-2 rounded-lg bg-gray-800">
+          <div className="w-full h-10 my-2 hover:text-cyan-500 hover:bg-gray-600 p-2 rounded-lg bg-gray-800">
             Media
           </div>
-          <div className="w-full h-10 my-2 p-2 hover:bg-gray-600 rounded-lg bg-gray-800">
+          <div className="w-full h-10 my-2 hover:text-cyan-500 p-2 hover:bg-gray-600 rounded-lg bg-gray-800">
             Report
           </div>
-          <div className="w-full h-10 my-2 p-2 hover:bg-gray-600 rounded-lg bg-gray-800">
+          <div className="w-full h-10 my-2 hover:text-cyan-500 p-2 hover:bg-gray-600 rounded-lg bg-gray-800">
             Block
           </div>
         </div>

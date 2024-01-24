@@ -3,7 +3,7 @@ import Profile from './Friends/Profile'
 
 export default function Friends() {
   return (
-    <div className=' pt-6 mx-0'>
+    <div className='bg-gray-700 pt-6'>
       <Profile />
     </div>
   )
