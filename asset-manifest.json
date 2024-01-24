@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/Hive/static/css/main.d7616a1d.css",
-    "main.js": "/Hive/static/js/main.59b8ff6a.js",
+    "main.css": "/Hive/static/css/main.ef3dcac5.css",
+    "main.js": "/Hive/static/js/main.be9c459a.js",
     "static/js/787.d47d2925.chunk.js": "/Hive/static/js/787.d47d2925.chunk.js",
     "static/media/prottoy.jpg": "/Hive/static/media/prottoy.03ec828e09a8b5d05326.jpg",
     "static/media/ragib.png": "/Hive/static/media/ragib.f5ae1483ce1fd40cda20.png",
@@ -24,6 +24,7 @@
     "static/media/post2.jpeg": "/Hive/static/media/post2.5dc9c903834ac0ccce7b.jpeg",
     "static/media/hamim_post.jpg": "/Hive/static/media/hamim_post.c1a7f237c679648c5147.jpg",
     "static/media/dp3.jpg": "/Hive/static/media/dp3.dbaa2cb20163a45fec5f.jpg",
+    "static/media/games.svg": "/Hive/static/media/games.4c88d4e4e8b5515160c94575ee525585.svg",
     "static/media/logoHive.png": "/Hive/static/media/logoHive.8d505ae417ae3634e237.png",
     "static/media/post1.jpg": "/Hive/static/media/post1.3a5ba7a2b5b0fc1994cb.jpg",
     "static/media/fbcover.jpg": "/Hive/static/media/fbcover.8c0f83c98f456dc528de.jpg",
@@ -37,12 +38,12 @@
     "static/media/image.svg": "/Hive/static/media/image.4b82b17723daa16edb35900870aa742f.svg",
     "static/media/profile.svg": "/Hive/static/media/profile.b50f08b3d3dbd517886edd86bdfe2fbd.svg",
     "index.html": "/Hive/index.html",
-    "main.d7616a1d.css.map": "/Hive/static/css/main.d7616a1d.css.map",
-    "main.59b8ff6a.js.map": "/Hive/static/js/main.59b8ff6a.js.map",
+    "main.ef3dcac5.css.map": "/Hive/static/css/main.ef3dcac5.css.map",
+    "main.be9c459a.js.map": "/Hive/static/js/main.be9c459a.js.map",
     "787.d47d2925.chunk.js.map": "/Hive/static/js/787.d47d2925.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.d7616a1d.css",
-    "static/js/main.59b8ff6a.js"
+    "static/css/main.ef3dcac5.css",
+    "static/js/main.be9c459a.js"
   ]
 }
