@@ -3,5 +3,13 @@
     "origin": ["*"],
     "method": ["GET", "POST", "PUT", "DELETE"],
     "maxAgeSeconds": 3600
+  },{
+    "rules": {
+      "your_collection": {
+        ".read": "auth != null",
+        ".write": "auth != null"
+      }
+    }
   }
+  
 ]

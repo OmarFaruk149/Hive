@@ -3,9 +3,20 @@ import {
   signInWithPopup,
   GoogleAuthProvider,
   signInWithRedirect,
+  onAuthStateChanged,
+  signOut,
 } from "firebase/auth";
 import { uploadBytes, ref, getDownloadURL } from "firebase/storage";
-import { collection, addDoc, getDocs, where } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  getDocs,
+  where,
+  doc,
+  updateDoc,
+  getDoc,
+  setDoc,
+} from "firebase/firestore";
 import { auth, db, storage } from "../firebase";
 import { isEmpty } from "lodash";
 
@@ -83,6 +94,7 @@ export const createAccount = async ({
     console.log("createAccount called");
     setLogin(true);
     setValue("Home");
+    return userMail;
   } catch (e) {
     alert(e.message);
   }
@@ -90,52 +102,79 @@ export const createAccount = async ({
 
 export const signInWithGoogle = async ({ setValue, setLogin }) => {
   try {
-    console.log("google auth start...");
+    await signOut(auth);
     const result = await signInWithPopup(auth, provider);
+
     const user = result.user;
+
+    console.log(user.email);
 
     const userExists = await checkUserExists(user.email);
     if (userExists) {
       setValue("Home");
       setLogin(true);
       console.log("alrady have account");
-      return;
+      console.log(user.email)
+      return user.email;
     }
     const data = {
       uid: user.uid,
       name: user.displayName,
       email: user.email,
-      photo: user.photoURL,
+      photo: (user.photoURL ? user.photoURL : null),
     };
     await addUserData(data);
     console.log("google data done");
+    return user.email;
   } catch (error) {
     console.log("google failed because of : ");
     console.log(error.message);
   }
 };
 const checkUserExists = async (email) => {
-  const querySnapshot = await getDocs(
-    collection(db, "/userProfileData"),
-    where("email", "==", email)
-  );
-  return !isEmpty(querySnapshot.docs);
+  const userRef = collection(db, "userProfileData");
+  const q = query(userRef, where("email", "==", email));
+
+  const querySnapshot = (await getDocs(q));
+  const val= querySnapshot.docs
+  return !isEmpty(val);
 };
 
-export const UserDataByUid = async (userUid) => {
+
+
+
+export const updateUserData = async (userUid, newData) => {
+  const userDocRef = doc(db, "userProfileData", userUid);
   try {
-    const userRef = collection(db, "userProfileData");
-    const userQuery = query(userRef, where("uid", "==", userUid));
-    const userSnapshot = await getDocs(userQuery);
-    if (!userSnapshot.empty) {
-      const userData = await userSnapshot.docs[0].data();
-      return userData;
-    } else {
-      console.log("no data found");
-      return null;
-    }
+    await updateDoc(userDocRef, newData);
+    console.log("User data updated successfully");
   } catch (error) {
-    console.log("error on query");
-    return null;
+    console.error("Error updating user data:", error.message);
   }
 };
+
+export const imageUpload = async (Image, Type) => {
+  try {
+    const imageRef = ref(storage, Type + "/" + Image.name + v4());
+    await uploadBytes(imageRef, Image);
+    const ImageLink = await getDownloadURL(imageRef);
+    console.log("Image uploaded " + Type);
+    return ImageLink;
+  } catch (err) {
+    console.log("image not uploaded " + Type);
+  }
+};
+export const addPhotoOrCover = async (userUid, type, newUrl) => {
+  const userDocRef = doc(db, "userProfileData", userUid);
+  try {
+    await setDoc(userDocRef, { [type]: [newUrl] }, { merge: true });
+    console.log(`${type} added successfully`);
+  } catch (error) {
+    console.error("Error adding photo or cover:", error.message);
+  }
+};
+
+
+
+
+

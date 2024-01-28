@@ -12,34 +12,26 @@ import Board from "./Components/Games/Board";
 import { useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth, db } from "./firebase";
-import { UserDataByUid } from "./Components/FirebaseOperations";
-
+import { collection, getDocs } from "firebase/firestore";
 function App() {
+  const [mail, setMail] = useState("");
+  const [isLogin, setLogin] = useState(false);
+  const [value, setValue] = useState("");
+ 
 
-  const setValue = (prop) =>{
-    setPage(prop);
-  }
- const setLogin = (val) =>{
-  setLog(val);
- }
-  const [currentUser, setCurrentUser] = useState("");
-  const [isLogin, setLog] = useState(null);
-  const [value, setPage] = useState(null);
-  const [Pages, setPages] = useState({
-    Home: <Home value={value} setValue={setValue} />,
-    SignUp: <SignUp setLogin={setLogin} setValue={setValue} />,
-    Login: <Login setLogin={setLogin} setValue={setValue} />,
-    Friends: <Friends setValue={setValue} />,
-    Navbar: (
-      <Navbar userData={currentUser} setValue={setValue} setLogin={setLogin} />
-    ),
-    Chat: <Chat setValue={setValue} setLogin={setLogin} />,
-    UserProfile: <UserProfile />,
-    Games: <Board />,
-  });
+  const [userDatabase, setDatabase] = useState({});
   useEffect(() => {
+    const Location = collection(db, "/userProfileData");
+
+    const getData = async () => {
+      const val = await getDocs(Location);
+      setDatabase(() => val.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    };
+    getData();
+
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
+        setMail(() => user.email);
         setLogin(user);
         setValue("Home");
         console.log("Logged in");
@@ -51,16 +43,34 @@ function App() {
     });
     return () => unsubscribe();
   }, []);
-
+  console.log(userDatabase[0] ? "hi" : "by");
   return (
     <>
-      <div className=" bg-gray-700">
+      <div className=" bg-gray-700 h-full w-full bg-fixed">
         {isLogin ? (
           <>
-            {Pages["Navbar"]} {Pages[value]}
+            {
+              <Navbar
+                userDatabase={userDatabase}
+                mail={mail}
+                setLogin={setLogin}
+                setValue={setValue}
+              />
+            }
+            {value == "UserProfile" ? (
+              <UserProfile userDatabase={userDatabase} mail={mail} />
+            ) : value == "Chat" ? (
+              <Chat setValue={setValue} setLogin={setLogin} />
+            ) : value == "Games" ? (
+              <Board setValue={setValue} setLogin={setLogin} />
+            ) : value == "Friends" ? (
+              <Friends setValue={setValue} setLogin={setLogin} />
+            ) : (
+              <Home setValue={setValue} setLogin={setLogin} />
+            )}
           </>
         ) : (
-          Pages[value]
+          <SignUp setLogin={setLogin} setValue={setValue}/>
         )}
       </div>
     </>

@@ -4,10 +4,7 @@ import Bg from "../images/img.jpg";
 import google from "../images/google.svg";
 import { createAccount, signInWithGoogle } from "./FirebaseOperations";
 
-
 export default function SignUp({ setLogin, setValue }) {
-
-
   const [userMail, setUserMail] = useState("");
   const [userPassword, setUserPassword] = useState("");
   const [userName, setUserName] = useState("");
@@ -35,7 +32,7 @@ export default function SignUp({ setLogin, setValue }) {
             <button
               type=""
               className=" bg-[#222f3e] text-teal-400 py-2 px-4 rounded-lg hover:bg-[#151e27] focus:outline-none"
-              onClick={()=>signInWithGoogle({setValue,setLogin})}
+              onClick={() => signInWithGoogle({ setValue, setLogin })}
             >
               <div className="flex">
                 <img src={google} alt="" className="mr-1 h-6 w-6" />
