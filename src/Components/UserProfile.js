@@ -9,7 +9,7 @@ export default function UserProfile({ userDatabase, mail }) {
   const [cover, setCover] = useState(null);
   const [profile, setProfile] = useState(null);
   const notun_data =userDatabase[0] ? userDatabase.filter((data) =>data.email === mail) : [null];
-
+  console.log(notun_data);
   const updateProfile = async () => {
     if (profile) {
       const url = await imageUpload(profile, "photo");
@@ -39,7 +39,7 @@ export default function UserProfile({ userDatabase, mail }) {
               alt="Cover Photo"
               className="rounded-b-xl h-6/12 w-8/12"
             />
-            <div className="row p-1 border-gray-700 bg-gray-700 rounded-full absolute start-1/4 -bottom-20 ">
+            <div className="row p-1 border-2 border-cyan-400 bg-gray-700 rounded-full absolute start-1/4 -bottom-20 ">
               <img
                 src={
                   notun_data[0] && notun_data[0].photo

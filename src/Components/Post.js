@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Post({ object }) {
+export default function Post({ user_image,user_name,postText,post_image, uploadTime }) {
   const isImageAvailable = (data) => {
     return data === "" ? false : true;
   };
@@ -9,21 +9,21 @@ export default function Post({ object }) {
       <div className="p-4">
         <div className="flex items-center space-x-4">
           <img
-            src={object.user_img}
+            src={user_image}
             alt="User Avatar"
             className="w-8 h-8 rounded-full"
           />
           <div className="">
-            <div className="font-semibold">{object.user_name}</div>
+            <div className="font-semibold">{user_name}</div>
             <div className="text-gray-400 text-sm">
-              Posted on January 1, 2024
+              {uploadTime}
             </div>
           </div>
         </div>
-        <div className="mt-4">{object.description}</div>
+        <div className="mt-4">{postText}</div>
         <div className="my-4">
-          {isImageAvailable(object.post_img) ? (
-            <img src={object.post_img} alt="" className="w-full" />
+          {isImageAvailable(post_image) ? (
+            <img src={post_image} alt="" className="w-full" />
           ) : (
             <span></span>
           )}
@@ -35,7 +35,7 @@ export default function Post({ object }) {
               alt="Like"
             />
           </div>
-          <div className="">{object.Like_count}</div>
+          <div className="">{"like koyta"}</div>
         </div>
         <div className="border-t-2 my-2"></div>
         <div className="flex items-center justify-center">

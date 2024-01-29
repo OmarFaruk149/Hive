@@ -2,25 +2,17 @@ import PostContainer from "./PostContainer";
 import Contacts from "./Contacts";
 import React, { useState } from "react";
 import Modal from "react-modal";
-import dp from "../images/fb dp.jpg"
-import image from "../images/image.svg"
+import dp from "../images/fb dp.jpg";
+import image from "../images/image.svg";
+import Popup from "./popUpPost";
 
-export default function Home() {
+export default function Home({notun_data}) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
 
-  const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    setSelectedFile(file);
-  };
+  const [isPopupOpen, setPopupOpen] = useState(false);
 
-  const handleButtonClick = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-  };
+  
 
   return (
     <div className=" ">
@@ -37,60 +29,26 @@ export default function Home() {
                 type="text"
                 placeholder="What's on your mind?"
                 className="w-full border-none hover:bg-slate-200 focus:outline-none rounded-lg h-8 px-2"
+                onClick={()=>setPopupOpen(true)}
               />
             </div>
             <div className="border-t-2 my-2"></div>
             <div className="flex items-center space-x-4">
-              <button className="flex items-center space-x-2">
+              <button
+                className="flex items-center space-x-2"
+                onClick={()=>setPopupOpen(true)}
+              >
                 <img
                   src={image}
                   title="picture icons"
                   alt="Photos/Videos"
                   className="h-6 w-6 bg-gray-500 rounded-lg "
-                  onClick={handleButtonClick}
                 />
                 <span className=" font-semibold text-white">Photos/Videos</span>
               </button>
-              <Modal
-                isOpen={isModalOpen}
-                onRequestClose={handleCloseModal}
-                contentLabel="File Input Modal"
-                ariaHideApp={false} // Disable the app element warning
-              >
-                <div>
-                  <h2>Choose a File</h2>
-                  <input
-                    type="file"
-                    accept="image/*, video/*"
-                    onChange={handleFileChange}
-                  />
-                  <p>
-                    Selected File: {selectedFile ? selectedFile.name : "None"}
-                  </p>
-                  {selectedFile && (
-                    <>
-                      {selectedFile.type.startsWith("image/") && (
-                        <img
-                          src={URL.createObjectURL(selectedFile)}
-                          alt="Selected"
-                        />
-                      )}
-                      {selectedFile.type.startsWith("video/") && (
-                        <video width="320" height="240" controls>
-                          <source
-                            src={URL.createObjectURL(selectedFile)}
-                            type={selectedFile.type}
-                          />
-                          Your browser does not support the video tag.
-                        </video>
-                      )}
-                    </>
-                  )}
-                  <button onClick={handleCloseModal}>Close</button>
-                </div>
-              </Modal>
             </div>
           </div>
+          <Popup isOpen={isPopupOpen} onClose={()=>setPopupOpen(false)} notun_data={notun_data} />
           <div className="mx-auto mt-4">
             <PostContainer />
           </div>

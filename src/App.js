@@ -13,11 +13,11 @@ import { useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth, db } from "./firebase";
 import { collection, getDocs } from "firebase/firestore";
+import dp from "./images/girl.jpg";
 function App() {
   const [mail, setMail] = useState("");
   const [isLogin, setLogin] = useState(false);
   const [value, setValue] = useState("");
- 
 
   const [userDatabase, setDatabase] = useState({});
   useEffect(() => {
@@ -43,10 +43,10 @@ function App() {
     });
     return () => unsubscribe();
   }, []);
-  console.log(userDatabase[0] ? "hi" : "by");
+  const notun_data =userDatabase[0] ? userDatabase.filter((data) =>data.email === mail) : [null];
   return (
     <>
-      <div className=" bg-gray-700 h-full w-full bg-fixed">
+     <div className=" bg-gray-700 h-full w-full bg-fixed">
         {isLogin ? (
           <>
             {
@@ -55,6 +55,7 @@ function App() {
                 mail={mail}
                 setLogin={setLogin}
                 setValue={setValue}
+                value={value}
               />
             }
             {value == "UserProfile" ? (
@@ -66,7 +67,7 @@ function App() {
             ) : value == "Friends" ? (
               <Friends setValue={setValue} setLogin={setLogin} />
             ) : (
-              <Home setValue={setValue} setLogin={setLogin} />
+              <Home setValue={setValue} setLogin={setLogin} notun_data={notun_data}/>
             )}
           </>
         ) : (

@@ -25,6 +25,25 @@ import { query } from "firebase/database";
 
 const provider = new GoogleAuthProvider();
 const userRef = collection(db, "/userProfileData"); //database location where to add data of users
+const postRef = collection(db, "/postContainer");
+
+
+
+export const fetchData = async ({ setData }) => {
+  try {
+    const val = await getDocs(postRef);
+    const data = val.docs.map((doc) => ({
+      ...doc.data(),
+      post_ID: doc.id,
+    }));
+    setData(() => data);
+    console.log(data);
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
+};
+
+
 
 export const photoUpload = async (visited, setVisited, Image) => {
   try {
@@ -114,14 +133,14 @@ export const signInWithGoogle = async ({ setValue, setLogin }) => {
       setValue("Home");
       setLogin(true);
       console.log("alrady have account");
-      console.log(user.email)
+      console.log(user.email);
       return user.email;
     }
     const data = {
       uid: user.uid,
       name: user.displayName,
       email: user.email,
-      photo: (user.photoURL ? user.photoURL : null),
+      photo: user.photoURL ? user.photoURL : null,
     };
     await addUserData(data);
     console.log("google data done");
@@ -135,13 +154,10 @@ const checkUserExists = async (email) => {
   const userRef = collection(db, "userProfileData");
   const q = query(userRef, where("email", "==", email));
 
-  const querySnapshot = (await getDocs(q));
-  const val= querySnapshot.docs
+  const querySnapshot = await getDocs(q);
+  const val = querySnapshot.docs;
   return !isEmpty(val);
 };
-
-
-
 
 export const updateUserData = async (userUid, newData) => {
   const userDocRef = doc(db, "userProfileData", userUid);
@@ -158,12 +174,13 @@ export const imageUpload = async (Image, Type) => {
     const imageRef = ref(storage, Type + "/" + Image.name + v4());
     await uploadBytes(imageRef, Image);
     const ImageLink = await getDownloadURL(imageRef);
-    console.log("Image uploaded " + Type);
+    console.log("Image uploaded for " + Type);
     return ImageLink;
   } catch (err) {
-    console.log("image not uploaded " + Type);
+    console.log("image not uploaded for" + Type);
   }
 };
+
 export const addPhotoOrCover = async (userUid, type, newUrl) => {
   const userDocRef = doc(db, "userProfileData", userUid);
   try {
@@ -173,8 +190,3 @@ export const addPhotoOrCover = async (userUid, type, newUrl) => {
     console.error("Error adding photo or cover:", error.message);
   }
 };
-
-
-
-
-
