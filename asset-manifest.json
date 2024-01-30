@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/Hive/static/css/main.1342f104.css",
-    "main.js": "/Hive/static/js/main.1300139a.js",
+    "main.css": "/Hive/static/css/main.796cc9c1.css",
+    "main.js": "/Hive/static/js/main.8aa9b903.js",
     "static/js/787.d47d2925.chunk.js": "/Hive/static/js/787.d47d2925.chunk.js",
     "static/media/prottoy.jpg": "/Hive/static/media/prottoy.03ec828e09a8b5d05326.jpg",
     "static/media/ragib.png": "/Hive/static/media/ragib.f5ae1483ce1fd40cda20.png",
@@ -45,12 +45,12 @@
     "static/media/profile.svg": "/Hive/static/media/profile.b50f08b3d3dbd517886edd86bdfe2fbd.svg",
     "index.html": "/Hive/index.html",
     "static/media/close.svg": "/Hive/static/media/close.f8cce9d8e61785e46719dbc1d4bf0915.svg",
-    "main.1342f104.css.map": "/Hive/static/css/main.1342f104.css.map",
-    "main.1300139a.js.map": "/Hive/static/js/main.1300139a.js.map",
+    "main.796cc9c1.css.map": "/Hive/static/css/main.796cc9c1.css.map",
+    "main.8aa9b903.js.map": "/Hive/static/js/main.8aa9b903.js.map",
     "787.d47d2925.chunk.js.map": "/Hive/static/js/787.d47d2925.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.1342f104.css",
-    "static/js/main.1300139a.js"
+    "static/css/main.796cc9c1.css",
+    "static/js/main.8aa9b903.js"
   ]
 }
