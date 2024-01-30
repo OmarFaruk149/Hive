@@ -1,10 +1,11 @@
 {
   "files": {
-    "main.css": "/Hive/static/css/main.c8279114.css",
-    "main.js": "/Hive/static/js/main.99577e6f.js",
+    "main.css": "/Hive/static/css/main.d65a6e15.css",
+    "main.js": "/Hive/static/js/main.886e366e.js",
     "static/js/787.d47d2925.chunk.js": "/Hive/static/js/787.d47d2925.chunk.js",
     "static/media/fb dp.jpg": "/Hive/static/media/fb dp.5c3552ca2495d5c0143b.jpg",
     "static/media/img.jpg": "/Hive/static/media/img.e4cb8fccec29fe86cee6.jpg",
+    "static/media/img1.jpg": "/Hive/static/media/img1.f080df638cdc388d593a.jpg",
     "static/media/games.svg": "/Hive/static/media/games.4c88d4e4e8b5515160c94575ee525585.svg",
     "static/media/logoHive.png": "/Hive/static/media/logoHive.8d505ae417ae3634e237.png",
     "static/media/comment.png": "/Hive/static/media/comment.32ee47ae5636df13cf2a.png",
@@ -25,12 +26,12 @@
     "static/media/profile.svg": "/Hive/static/media/profile.b50f08b3d3dbd517886edd86bdfe2fbd.svg",
     "index.html": "/Hive/index.html",
     "static/media/close.svg": "/Hive/static/media/close.f8cce9d8e61785e46719dbc1d4bf0915.svg",
-    "main.c8279114.css.map": "/Hive/static/css/main.c8279114.css.map",
-    "main.99577e6f.js.map": "/Hive/static/js/main.99577e6f.js.map",
+    "main.d65a6e15.css.map": "/Hive/static/css/main.d65a6e15.css.map",
+    "main.886e366e.js.map": "/Hive/static/js/main.886e366e.js.map",
     "787.d47d2925.chunk.js.map": "/Hive/static/js/787.d47d2925.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.c8279114.css",
-    "static/js/main.99577e6f.js"
+    "static/css/main.d65a6e15.css",
+    "static/js/main.886e366e.js"
   ]
 }
