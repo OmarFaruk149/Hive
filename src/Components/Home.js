@@ -1,14 +1,11 @@
 import PostContainer from "./PostContainer";
 import Contacts from "./Contacts";
 import React, { useState } from "react";
-import Modal from "react-modal";
-import dp from "../images/fb dp.jpg";
+import UserProfile from "../images/up.svg";
 import image from "../images/image.svg";
 import Popup from "./popUpPost";
 
 export default function Home({notun_data}) {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedFile, setSelectedFile] = useState(null);
 
   const [isPopupOpen, setPopupOpen] = useState(false);
 
@@ -21,7 +18,11 @@ export default function Home({notun_data}) {
           <div className="bg-gray-800 p-4 mx-5 rounded-lg mt-6 ">
             <div className="flex items-center space-x-4 mb-4">
               <img
-                src={dp}
+                src={
+                  notun_data && notun_data.photo
+                    ? notun_data.photo
+                    : UserProfile
+                }
                 alt="User Avatar"
                 className="w-8 h-8 rounded-full"
               />
@@ -32,7 +33,7 @@ export default function Home({notun_data}) {
                 onClick={()=>setPopupOpen(true)}
               />
             </div>
-            <div className="border-t-2 my-2"></div>
+           <hr className="my-4 " />
             <div className="flex items-center space-x-4">
               <button
                 className="flex items-center space-x-2"
@@ -42,7 +43,7 @@ export default function Home({notun_data}) {
                   src={image}
                   title="picture icons"
                   alt="Photos/Videos"
-                  className="h-6 w-6 bg-gray-500 rounded-lg "
+                  className="h-6 w-6 bg-gray-400 rounded-lg "
                 />
                 <span className=" font-semibold text-white">Photos/Videos</span>
               </button>
@@ -50,7 +51,7 @@ export default function Home({notun_data}) {
           </div>
           <Popup isOpen={isPopupOpen} onClose={()=>setPopupOpen(false)} notun_data={notun_data} />
           <div className="mx-auto mt-4">
-            <PostContainer />
+            <PostContainer notun_data={notun_data}/>
           </div>
         </div>
         {/* <div className="col-span-1 h-full"></div> */}

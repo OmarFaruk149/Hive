@@ -25,25 +25,6 @@ import { query } from "firebase/database";
 
 const provider = new GoogleAuthProvider();
 const userRef = collection(db, "/userProfileData"); //database location where to add data of users
-const postRef = collection(db, "/postContainer");
-
-
-
-export const fetchData = async ({ setData }) => {
-  try {
-    const val = await getDocs(postRef);
-    const data = val.docs.map((doc) => ({
-      ...doc.data(),
-      post_ID: doc.id,
-    }));
-    setData(() => data);
-    console.log(data);
-  } catch (error) {
-    console.error("Error fetching data:", error);
-  }
-};
-
-
 
 export const photoUpload = async (visited, setVisited, Image) => {
   try {
@@ -64,7 +45,6 @@ export const photoUpload = async (visited, setVisited, Image) => {
 export const addUserData = async (data) => {
   try {
     let userData = {
-      uid: data.uid,
       name: data.name,
       email: data.email,
       photo: data.photo,
@@ -104,7 +84,6 @@ export const createAccount = async ({
     );
     const user = userInfo.user;
     let data = {
-      uid: user.uid,
       name: userName,
       email: userMail,
       photo: photoLink,
@@ -137,7 +116,6 @@ export const signInWithGoogle = async ({ setValue, setLogin }) => {
       return user.email;
     }
     const data = {
-      uid: user.uid,
       name: user.displayName,
       email: user.email,
       photo: user.photoURL ? user.photoURL : null,
@@ -171,8 +149,10 @@ export const updateUserData = async (userUid, newData) => {
 
 export const imageUpload = async (Image, Type) => {
   try {
-    const imageRef = ref(storage, Type + "/" + Image.name + v4());
+    const imageRef = ref(storage, `${Type}/${Image.name + v4()}`);
+    console.log("uploading...");
     await uploadBytes(imageRef, Image);
+    console.log("uploaded");
     const ImageLink = await getDownloadURL(imageRef);
     console.log("Image uploaded for " + Type);
     return ImageLink;

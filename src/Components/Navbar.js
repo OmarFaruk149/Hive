@@ -5,7 +5,7 @@ import Contact from "../images/contact-active.svg";
 import Home from "../images/home-svgrepo-com.svg";
 import Text from "../images/text-active.svg";
 import Logout from "../images/logout.svg";
-import UserProfile from "../images/fb dp.jpg";
+import UserProfile from "../images/up.svg";
 import Logo from "../images/logoHive.png";
 import Games from "../images/games.svg";
 import { signOut } from "firebase/auth";
@@ -49,7 +49,7 @@ export default function Navbar({
             <button
               className={`Home  ${
                 value === "Home"
-                  ? "border-2 border-black bg-cyan-500 h-10 w-10 rounded-full shadow-[0px_1px_15px_rgba(0,_196,_270,_1)] p-1"
+                  ? "bg-cyan-400  rounded-full shadow-[0px_1px_15px_rgba(0,_196,_270,_1)] p-1"
                   : "cursor-pointer button bg-gray-400 hover:bg-gray-300 shadow-[0px_1px_15px_rgba(0,_196,_270,_1)] p-1 rounded-full "
               } `}
               title="Home"
@@ -64,7 +64,7 @@ export default function Navbar({
             <button
               className={`Games  ${
                 value === "Games"
-                  ? "border-2 border-black bg-cyan-500 h-10 w-10 rounded-full shadow-[0px_1px_15px_rgba(0,_196,_270,_1)] p-1"
+                  ? "bg-cyan-400  rounded-full shadow-[0px_1px_15px_rgba(0,_196,_270,_1)] p-1"
                   : "cursor-pointer button bg-gray-400 hover:bg-gray-300 shadow-[0px_1px_15px_rgba(0,_196,_270,_1)] p-1 rounded-full "
               } `}
               title="Games"
@@ -79,7 +79,7 @@ export default function Navbar({
             <button
               className={`Contacts  ${
                 value === "Friends"
-                  ? "border-2 border-black bg-cyan-500 h-10 w-10 rounded-full shadow-[0px_1px_15px_rgba(0,_196,_270,_1)] p-1"
+                  ? "bg-cyan-400  rounded-full shadow-[0px_1px_15px_rgba(0,_196,_270,_1)] p-1"
                   : "cursor-pointer button bg-gray-400 hover:bg-gray-300 shadow-[0px_1px_15px_rgba(0,_196,_270,_1)] p-1 rounded-full "
               } `}
               title="User list"
@@ -90,7 +90,7 @@ export default function Navbar({
             <button
               className={`Chat  ${
                 value === "Chat"
-                  ? "border-2 border-black bg-cyan-500 h-10 w-10 rounded-full shadow-[0px_1px_15px_rgba(0,_196,_270,_1)] p-1"
+                  ? "bg-cyan-400  rounded-full shadow-[0px_1px_15px_rgba(0,_196,_270,_1)] p-1"
                   : "cursor-pointer button bg-gray-400 hover:bg-gray-300 shadow-[0px_1px_15px_rgba(0,_196,_270,_1)] p-1 rounded-full "
               } `}
               title="Chat list"
@@ -101,7 +101,7 @@ export default function Navbar({
             <button
               className={`Profile  ${
                 value === "UserProfile"
-                  ? "border-2 border-black  h-10 w-10 rounded-full shadow-[0px_1px_15px_rgba(0,_196,_270,_1)] "
+                  ? "bg-cyan-400 p-1  rounded-full shadow-[0px_1px_15px_rgba(0,_196,_270,_1)] "
                   : "cursor-pointer button bg-gray-400 hover:bg-gray-300 shadow-[0px_1px_15px_rgba(0,_196,_270,_1)] p-1 rounded-full "
               } `}
               title="Profile"
@@ -120,7 +120,7 @@ export default function Navbar({
             <button
               className={`Logout  ${
                 value === "LogOut"
-                  ? "border-2 border-black bg-cyan-500 h-10 w-10 rounded-full shadow-[0px_1px_15px_rgba(0,_196,_270,_1)] p-1"
+                  ? "bg-cyan-400  rounded-full shadow-[0px_1px_15px_rgba(0,_196,_270,_1)] p-1"
                   : "cursor-pointer button bg-gray-400 hover:bg-gray-300 shadow-[0px_1px_15px_rgba(0,_196,_270,_1)] p-1 rounded-full "
               } `}
               title="LogOut"

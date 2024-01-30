@@ -1,48 +1,42 @@
 import React, { useEffect, useState } from "react";
-import dp from "../images/dp.jpeg";
+import UserProfile from "../images/up.svg";
 import upload from "../images/upload.svg";
 import close from "../images/close.svg";
 import { fetchData, imageUpload } from "./FirebaseOperations";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { db } from "../firebase";
 
-
-
 const Popup = ({ isOpen, onClose, notun_data }) => {
   const [postText, setPostText] = useState("");
   const [Image, setImage] = useState(null);
   const dbRef = collection(db, "/postContainer");
 
- 
-
-  let link=null;
+  let link = null;
   const handlePost = async () => {
     if (Image) {
-        try {
-          link = await imageUpload(Image, "post");
-          setImage(null);
-          console.log("uploaded image " + link);
-          console.log("upload success! ");
-        } catch (error) {
-          console.error("image not uploaded ", error);
-        }
+      try {
+        link = await imageUpload(Image, "post");
+        setImage(null);
+        console.log("uploaded image " + link);
+        console.log("upload success! ");
+      } catch (error) {
+        console.error("image not uploaded ", error);
       }
-    const data = {
-      uid: notun_data[0].uid,
-      postText: postText,
-      post_image: link,
-      user_name:notun_data[0].name,
-      user_mail: notun_data[0].email,
-      user_image:notun_data[0].photo,
-      like_count:0,
-      liked_by:[],
-    };
+    }
+
     try {
       await addDoc(dbRef, {
         uploadTime: serverTimestamp(),
-        data,
+        uid: notun_data.id,
+        postText: postText,
+        post_image: link,
+        user_name: notun_data.name,
+        user_mail: notun_data.email,
+        user_image: notun_data.photo,
+        like_count: 0,
+        liked_by: [],
       });
-      
+
       console.log("data uploaded successfuly!!!");
       link = null;
     } catch (error) {
@@ -50,7 +44,7 @@ const Popup = ({ isOpen, onClose, notun_data }) => {
     }
     onClose();
   };
-
+console.log(notun_data)
   return (
     <div className={`fixed inset-0 z-50 ${isOpen ? "block" : "hidden"}`}>
       <div
@@ -75,8 +69,20 @@ const Popup = ({ isOpen, onClose, notun_data }) => {
 
           <div className="Profile my-1  p-2 hover:bg-gray-700 rounded-lg">
             <div className="flex">
-              <img src={dp} alt="" className="w-8 h-8 rounded-full" />
-              <div className="p-1">Omar Faruk</div>
+              <img
+                src={
+                  notun_data && notun_data.photo
+                    ? notun_data.photo
+                    : UserProfile
+                }
+                alt=""
+                className="w-8 h-8 rounded-full"
+              />
+              <div className="p-1">
+                {notun_data && notun_data.name
+                  ? notun_data.name
+                  : "Hive"}
+              </div>
             </div>
           </div>
           <div className="">

@@ -43,10 +43,16 @@ function App() {
     });
     return () => unsubscribe();
   }, []);
-  const notun_data =userDatabase[0] ? userDatabase.filter((data) =>data.email === mail) : [null];
+
+
+  console.log(userDatabase[0]);
+  const notun_data = userDatabase[0]
+    ? userDatabase.filter((data) => data.email === mail)
+    : [null];
+    
   return (
     <>
-     <div className=" bg-gray-700 h-full w-full bg-fixed">
+      <div className=" bg-gray-700 h-full w-full bg-fixed">
         {isLogin ? (
           <>
             {
@@ -67,11 +73,17 @@ function App() {
             ) : value == "Friends" ? (
               <Friends setValue={setValue} setLogin={setLogin} />
             ) : (
-              <Home setValue={setValue} setLogin={setLogin} notun_data={notun_data}/>
+              <Home
+                setValue={setValue}
+                setLogin={setLogin}
+                notun_data={notun_data[0]}
+              />
             )}
           </>
+        ) : value == "Login" ? (
+          <Login setValue={setValue} setLogin={setLogin} />
         ) : (
-          <SignUp setLogin={setLogin} setValue={setValue}/>
+          <SignUp setLogin={setLogin} setValue={setValue} />
         )}
       </div>
     </>
