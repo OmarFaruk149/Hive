@@ -17,6 +17,8 @@ export default function Navbar({
   setValue,
   value,
 }) {
+  const [hidden, setHidden] = useState(true);
+
   const notun_data = userDatabase[0]
     ? userDatabase.filter((data) => data.email === mail)
     : [null];
@@ -36,18 +38,21 @@ export default function Navbar({
     <div className="bg-gray-800 text-white py-2 px-5 sticky  top-0 z-50">
       <nav className="">
         <div className="mx-auto flex justify-between items-center">
-          <img
-            onClick={() => setValue("Home")}
-            src={Logo}
-            alt=""
-            className="h-9 w-9 ml-6 rounded-full border-2 border-cyan-500 shadow-[0px_1px_15px_rgba(0,_196,_270,_1)]"
-          />
-          <div className=" ml-16 flex justify-center text-xl italic font-semibold text-cyan-300 shadow-[0px_1px_15px_rgba(0,_196,_270,_.8)] w-1/6 bg-gray-800 rounded-full p-2">
-            {notun_data[0] && notun_data[0].name ? notun_data[0].name : "Hive"}
+          <div className="space-x-2 flex">
+                <img
+                  onClick={() => setValue("Home")}
+                  src={Logo}
+                  alt=""
+                  className="h-11  w-11 p-1 md:ml-6 rounded-full border-2 border-cyan-500 shadow-[0px_1px_15px_rgba(0,_196,_270,_1)]"
+                />
+                <div className="hidden md:flex h-auto w-auto text-lg font-semibold text-cyan-300 shadow-[0px_1px_15px_rgba(0,_196,_270,_.7)]  bg-gray-800 rounded-lg p-2">
+                  {notun_data[0] && notun_data[0].name ? notun_data[0].name : "Hive"}
+                </div>
+
           </div>
-          <div className="space-x-6 flex flex-row">
+          <div className="space-x-2 md:space-x-4 flex flex-row">
             <button
-              className={`Home  ${
+              className={`hidden sm:flex  Home  ${
                 value === "Home"
                   ? "bg-cyan-400  rounded-full shadow-[0px_1px_15px_rgba(0,_196,_270,_1)] p-1"
                   : "cursor-pointer button bg-gray-400 hover:bg-gray-300 shadow-[0px_1px_15px_rgba(0,_196,_270,_1)] p-1 rounded-full "
@@ -102,7 +107,7 @@ export default function Navbar({
               className={`Profile  ${
                 value === "UserProfile"
                   ? "bg-cyan-400 p-1  rounded-full shadow-[0px_1px_15px_rgba(0,_196,_270,_1)] "
-                  : "cursor-pointer button bg-gray-400 hover:bg-gray-300 shadow-[0px_1px_15px_rgba(0,_196,_270,_1)] p-1 rounded-full "
+                  : " bg-gray-400 hover:bg-gray-300 shadow-[0px_1px_15px_rgba(0,_196,_270,_1)] p-1 rounded-full "
               } `}
               title="Profile"
               onClick={() => setValue("UserProfile")}
@@ -121,12 +126,12 @@ export default function Navbar({
               className={`Logout  ${
                 value === "LogOut"
                   ? "bg-cyan-400  rounded-full shadow-[0px_1px_15px_rgba(0,_196,_270,_1)] p-1"
-                  : "cursor-pointer button bg-gray-400 hover:bg-gray-300 shadow-[0px_1px_15px_rgba(0,_196,_270,_1)] p-1 rounded-full "
+                  : "mx-auto flex justify-between items-center bg-gray-400 hover:bg-gray-300 shadow-[0px_1px_15px_rgba(0,_196,_270,_1)] p-1 rounded-full "
               } `}
               title="LogOut"
               onClick={logOut}
             >
-              <img src={Logout} alt="Logout" className="h-9 w-9 p-1" />
+              <img src={Logout} alt="Logout" className="h-9 w-9 " />
             </button>
           </div>
         </div>

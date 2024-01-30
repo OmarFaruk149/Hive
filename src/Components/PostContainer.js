@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useMemo } from "react";
-import Post from "./Post";
 import {
   arrayUnion,
   collection,

@@ -5,11 +5,8 @@ import UserProfile from "../images/up.svg";
 import image from "../images/image.svg";
 import Popup from "./popUpPost";
 
-export default function Home({notun_data}) {
-
+export default function Home({ userDatabase, userId, notun_data }) {
   const [isPopupOpen, setPopupOpen] = useState(false);
-
-  
 
   return (
     <div className=" ">
@@ -30,14 +27,14 @@ export default function Home({notun_data}) {
                 type="text"
                 placeholder="What's on your mind?"
                 className="w-full border-none hover:bg-slate-200 focus:outline-none rounded-lg h-8 px-2"
-                onClick={()=>setPopupOpen(true)}
+                onClick={() => setPopupOpen(true)}
               />
             </div>
-           <hr className="my-4 " />
+            <hr className="my-4 " />
             <div className="flex items-center space-x-4">
               <button
                 className="flex items-center space-x-2"
-                onClick={()=>setPopupOpen(true)}
+                onClick={() => setPopupOpen(true)}
               >
                 <img
                   src={image}
@@ -49,14 +46,18 @@ export default function Home({notun_data}) {
               </button>
             </div>
           </div>
-          <Popup isOpen={isPopupOpen} onClose={()=>setPopupOpen(false)} notun_data={notun_data} />
+          <Popup
+            isOpen={isPopupOpen}
+            onClose={() => setPopupOpen(false)}
+            notun_data={notun_data}
+          />
           <div className="mx-auto mt-4">
-            <PostContainer notun_data={notun_data}/>
+            <PostContainer notun_data={notun_data} />
           </div>
         </div>
         {/* <div className="col-span-1 h-full"></div> */}
-        <div className=" text-white font-thin col-span-3 mt-5 mr-5 px-6">
-          <Contacts />
+        <div className="hidden lg:flex text-white font-thin col-span-3 mt-5 mr-5 px-6">
+          <Contacts userDatabase={userDatabase} userId={userId}/>
         </div>
       </div>
     </div>

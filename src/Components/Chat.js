@@ -1,15 +1,15 @@
 import React, { useState } from "react";
-import { UserData } from "./UserDataFor";
-import "./Chat.css";
 import ProfileIcon from "../images/profile.svg";
 import NotificationIcon from "../images/notification.svg";
 import SearchIcon from "../images/search.svg";
-export default function Chat() {
+export default function Chat({ userDatabase, userId }) {
   const [profile, setProfile] = useState(0);
-
+  const UserData = userDatabase[0]
+    ? userDatabase.filter((data) => data.id !== userId)
+    : [null];
   return (
     <>
-      <div className="flex flex-row text-white h-[90vh] w-full bg-gray-700">
+      <div className="flex flex-row text-white h-screen fixed w-full bg-gray-700">
         <div class="section-1 overflow-auto w-3/12 border-r border-gray-800 ">
           <div className="sticky top-0 p-2 bg-gray-700">
             <h1 className="text-lg font-bold">Chat</h1>
@@ -18,25 +18,25 @@ export default function Chat() {
             {UserData.map((data, index) => (
               <>
                 <div
-                  className={`flex hover:text-cyan-400 ${
+                  className={`flex-col md:flex hover:text-cyan-400 ${
                     profile == index
-                      ? "bg-gray-800 rounded-lg"
+                      ? "bg-gray-800 text-cyan-400 rounded-lg"
                       : "hover:bg-gray-600 hover:rounded-lg"
                   } `}
                   onClick={() => setProfile(index)}
                 >
-                  <div className="p-1 m-1 h-14 w-14">
+                  <div className="p-1  md:m-1 h-12 w-12 md:h-14 md:w-14">
                     <img
-                      src={data.image}
+                      src={data.photo}
                       alt={data.name}
-                      className="rounded-full"
+                      className="rounded-full m-3"
                     />
                   </div>
                   <div className="p-3 ">
                     <div className="text-xs font-bold font-sans">
                       {data.name}
                     </div>
-                    <div className="text-xs font-extralight text-gray-300">
+                    <div className="hidden md:flex text-xs font-extralight text-gray-300">
                       Hi I'm using Hive.
                     </div>
                   </div>
@@ -46,11 +46,11 @@ export default function Chat() {
           </div>
         </div>
 
-        <div class="section-2 overflow-auto w-6/12 ">
+        <div class="section-2 flex-1 overflow-auto w-6/12">
           <div className="Navbar sticky top-0 bg-gray-700 border-b border-gray-800 w-full">
             <div className="Profile-section flex m-1 p-2 hover:text-cyan-500 hover:bg-gray-600 hover:rounded-lg w-1/3">
               <img
-                src={UserData[profile].image}
+                src={UserData[profile].photo}
                 alt={UserData[profile].name}
                 className="h-10 w-10 rounded-full"
               />
@@ -60,20 +60,10 @@ export default function Chat() {
             </div>
           </div>
 
-          <div className="NavbarBottom fixed bottom-0 w-6/12 p-2 flex">
-            <input
-              type="message"
-              row="2"
-              className=" rounded-full resize-none h-10 w-full p-4 text-black focus:outline-none"
-              placeholder="Type your message here"
-            />
-            <button className="rounded-full m-1 bg-gray-800 p-2">send</button>
-          </div>
-
           <div className="profile flex justify-center content-center m-4 p-4">
-            <div className="image">
+            <div className="photo">
               <img
-                src={UserData[profile].image}
+                src={UserData[profile].photo}
                 alt={UserData[profile].name}
                 className="rounded-full h-36 w-36"
               />
@@ -82,13 +72,24 @@ export default function Chat() {
               </div>
             </div>
           </div>
+          <div className="flex justify-center content-center">
+            <div className="NavbarBottom fixed bottom-0 max-w-md md:w-full md:max-w-screen-sm p-2 flex">
+              <input
+                type="message"
+                row="2"
+                className=" rounded-full resize-none w-full h-10 p-4 text-black focus:outline-none"
+                placeholder="Type your message here"
+              />
+              <button className="rounded-full m-1 bg-gray-800 p-2">send</button>
+            </div>
+          </div>
         </div>
 
-        <div class="section-3 overflow-auto w-3/12 l border-l border-gray-800 p-6">
+        <div class="section-3 hidden xl:block w-3/12 overflow-auto border-l border-gray-800 p-6">
           <div className="flex flex-col justify-center content-center bg-gray-800 rounded-lg pt-6">
             <div className="flex justify-center content-center">
               <img
-                src={UserData[profile].image}
+                src={UserData[profile].photo}
                 alt={UserData[profile].name}
                 className=" rounded-full p-1 h-20 w-20"
               />
@@ -102,7 +103,7 @@ export default function Chat() {
               <div className="flex-1">
                 <button
                   className="h-10 w-10 bg-gray-600 hover:bg-gray-500 rounded-full"
-                  onCanPlay={(event) => event.preventDefault()}
+                  onClick={(event) => event.preventDefault()}
                 >
                   <img src={ProfileIcon} alt="Profile" className="p-1" />
                 </button>
@@ -114,7 +115,7 @@ export default function Chat() {
               <div className="flex-1">
                 <button
                   className="h-10 w-10 bg-gray-600 hover:bg-gray-500 rounded-full"
-                  onCanPlay={(event) => event.preventDefault()}
+                  onClick={(event) => event.preventDefault()}
                 >
                   <img src={NotificationIcon} alt="Mute" className="p-1" />
                 </button>

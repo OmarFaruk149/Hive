@@ -44,12 +44,12 @@ function App() {
     return () => unsubscribe();
   }, []);
 
-
   console.log(userDatabase[0]);
   const notun_data = userDatabase[0]
     ? userDatabase.filter((data) => data.email === mail)
-    : [null];
-    
+    : [{ id: null }];
+
+
   return (
     <>
       <div className=" bg-gray-700 h-full w-full bg-fixed">
@@ -67,17 +67,13 @@ function App() {
             {value == "UserProfile" ? (
               <UserProfile userDatabase={userDatabase} mail={mail} />
             ) : value == "Chat" ? (
-              <Chat setValue={setValue} setLogin={setLogin} />
+              <Chat userDatabase={userDatabase} userId={notun_data[0].id} />
             ) : value == "Games" ? (
               <Board setValue={setValue} setLogin={setLogin} />
             ) : value == "Friends" ? (
-              <Friends setValue={setValue} setLogin={setLogin} />
+              <Friends userId={notun_data[0].id} userDatabase={userDatabase} />
             ) : (
-              <Home
-                setValue={setValue}
-                setLogin={setLogin}
-                notun_data={notun_data[0]}
-              />
+              <Home userDatabase={userDatabase} userId={notun_data[0].id} notun_data={notun_data[0]} />
             )}
           </>
         ) : value == "Login" ? (
