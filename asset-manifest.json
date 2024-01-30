@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/Hive/static/css/main.2265173e.css",
-    "main.js": "/Hive/static/js/main.247a30ed.js",
+    "main.css": "/Hive/static/css/main.1342f104.css",
+    "main.js": "/Hive/static/js/main.1300139a.js",
     "static/js/787.d47d2925.chunk.js": "/Hive/static/js/787.d47d2925.chunk.js",
     "static/media/prottoy.jpg": "/Hive/static/media/prottoy.03ec828e09a8b5d05326.jpg",
     "static/media/ragib.png": "/Hive/static/media/ragib.f5ae1483ce1fd40cda20.png",
@@ -26,9 +26,11 @@
     "static/media/dp3.jpg": "/Hive/static/media/dp3.dbaa2cb20163a45fec5f.jpg",
     "static/media/games.svg": "/Hive/static/media/games.4c88d4e4e8b5515160c94575ee525585.svg",
     "static/media/logoHive.png": "/Hive/static/media/logoHive.8d505ae417ae3634e237.png",
+    "static/media/comment.png": "/Hive/static/media/comment.32ee47ae5636df13cf2a.png",
     "static/media/post1.jpg": "/Hive/static/media/post1.3a5ba7a2b5b0fc1994cb.jpg",
     "static/media/girl.jpg": "/Hive/static/media/girl.b537a586ed0757c584ec.jpg",
     "static/media/fbcover.jpg": "/Hive/static/media/fbcover.8c0f83c98f456dc528de.jpg",
+    "static/media/like.png": "/Hive/static/media/like.9c6dbc91827ca868350b.png",
     "static/media/up.svg": "/Hive/static/media/up.d6ea8d6b5f71f0a293b5e81dcebb21ae.svg",
     "static/media/notification.svg": "/Hive/static/media/notification.9740fe5003ea59e2e39b5e4a3ee598ec.svg",
     "static/media/contact-active.svg": "/Hive/static/media/contact-active.56862d114de0713182d705c4c81a614b.svg",
@@ -43,12 +45,12 @@
     "static/media/profile.svg": "/Hive/static/media/profile.b50f08b3d3dbd517886edd86bdfe2fbd.svg",
     "index.html": "/Hive/index.html",
     "static/media/close.svg": "/Hive/static/media/close.f8cce9d8e61785e46719dbc1d4bf0915.svg",
-    "main.2265173e.css.map": "/Hive/static/css/main.2265173e.css.map",
-    "main.247a30ed.js.map": "/Hive/static/js/main.247a30ed.js.map",
+    "main.1342f104.css.map": "/Hive/static/css/main.1342f104.css.map",
+    "main.1300139a.js.map": "/Hive/static/js/main.1300139a.js.map",
     "787.d47d2925.chunk.js.map": "/Hive/static/js/787.d47d2925.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.2265173e.css",
-    "static/js/main.247a30ed.js"
+    "static/css/main.1342f104.css",
+    "static/js/main.1300139a.js"
   ]
 }
