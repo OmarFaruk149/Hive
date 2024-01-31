@@ -4,6 +4,7 @@ import demo_profile from "../images/use_profile_demo.svg";
 import dp from "../images/fb dp.jpg";
 import { addPhotoOrCover, imageUpload } from "./FirebaseOperations";
 import uploadIcon from "../images/upload.svg";
+import "../Components/Login.css";
 
 export default function UserProfile({ userDatabase, mail }) {
   const [cover, setCover] = useState(null);
@@ -27,7 +28,7 @@ export default function UserProfile({ userDatabase, mail }) {
   console.log(notun_data);
   return (
     <>
-  <div className="h-full bg-gray-600 z-0">
+  <div className="h-full bg-gray-600 z-0  login-form">
     <div className="showOff relative">
       <div className="CoverPic relative overflow-hidden">
         <img

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "../Components/Login.css"
 import ProfileIcon from "../images/profile.svg";
 import NotificationIcon from "../images/notification.svg";
 import SearchIcon from "../images/search.svg";
@@ -9,8 +10,8 @@ export default function Chat({ userDatabase, userId }) {
     : [null];
   return (
     <>
-      <div className="flex flex-row text-white h-screen fixed w-full bg-gray-700">
-        <div class="section-1 overflow-auto w-2/12 border-r border-gray-800 ">
+      <div className=" login-form flex flex-row text-white h-screen fixed w-full bg-gray-700 ">
+        <div class="section-1 overflow-auto w-2/12 lg:w-3/12 border-r border-gray-800 ">
           <div className="sticky top-0 p-2 bg-gray-700">
             <h1 className="text-lg font-bold">Chat</h1>
           </div>

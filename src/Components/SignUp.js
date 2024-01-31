@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import "./Login";
 import Bg from "../images/img1.jpg";
 import google from "../images/google.svg";
 import { createAccount, signInWithGoogle } from "./FirebaseOperations";
@@ -15,7 +15,7 @@ export default function SignUp({ setLogin, setValue }) {
 
   return (
     <div
-      className="bg-cover bg-center h-full w-full fixed overflow-y-scroll"
+      className="bg-cover bg-center h-full w-full fixed overflow-y-scroll login-form"
       style={{
         backgroundImage: `url(${Bg})`,
       }}
@@ -58,7 +58,7 @@ export default function SignUp({ setLogin, setValue }) {
                   id="userName"
                   value={userName}
                   placeholder="Full name"
-                  className="border rounded-lg bg-gray-900 bg-opacity-50 text-teal-400 border-cyan-950 w-full  px-3 py-2 placeholder:select-none focus:outline-none focus:border-[#222f3e]"
+                  className="border rounded-lg bg-gray-900 bg-opacity-50 text-teal-400 border-cyan-950 w-full px-3 py-2 placeholder:select-none focus:outline-none focus:border-[#222f3e]"
                   onChange={(e) => setUserName(e.target.value)}
                 />
               </div>
@@ -74,7 +74,7 @@ export default function SignUp({ setLogin, setValue }) {
                   id="email"
                   value={userMail}
                   placeholder="Email address"
-                  className="border rounded-lg bg-gray-900 bg-opacity-50 text-teal-400 border-cyan-950 w-full  px-3 py-2 placeholder:select-none focus:outline-none focus:border-[#222f3e]"
+                  className="border rounded-lg bg-gray-900 bg-opacity-50 text-teal-400 border-cyan-950 w-full px-3 py-2 placeholder:select-none focus:outline-none focus:border-[#222f3e]"
                   onChange={(e) => setUserMail(e.target.value)}
                 />
               </div>
@@ -90,7 +90,7 @@ export default function SignUp({ setLogin, setValue }) {
                   id="password"
                   placeholder="Password"
                   value={userPassword}
-                  className="border rounded-lg bg-gray-900 bg-opacity-50 text-teal-400 border-cyan-950 w-full  px-3 py-2 focus:outline-none focus:border-[#222f3e]"
+                  className="border rounded-lg bg-gray-900 bg-opacity-50 text-teal-400 border-cyan-950 w-full px-3 py-2 focus:outline-none focus:border-[#222f3e]"
                   onChange={(e) => setUserPassword(e.target.value)}
                 />
               </div>
@@ -112,7 +112,7 @@ export default function SignUp({ setLogin, setValue }) {
               <div className="flex items-center justify-center">
                 <button
                   type="button"
-                  className=" bg-[#222f3e] text-teal-400 py-2 px-4 rounded-lg hover:bg-[#151e27] focus:outline-none"
+                  className="bg-[#222f3e] text-teal-400 py-2 px-4 rounded-lg hover:bg-[#151e27] focus:outline-none"
                   onClick={(e) => {
                     createAccount({
                       Image,
@@ -133,12 +133,12 @@ export default function SignUp({ setLogin, setValue }) {
                 </button>
               </div>
               <div className="text-gray-200 text-center text-xs p-2">
-                Already have an account ?
+                Already have an account?
               </div>
               <div className="flex items-center justify-center">
                 <button
-                  type=""
-                  className=" bg-[#222f3e] text-teal-400 py-2 px-4 rounded-lg hover:bg-[#151e27] focus:outline-none"
+                  type="button"
+                  className="bg-[#222f3e] text-teal-400 py-2 px-4 rounded-lg hover:bg-[#151e27] focus:outline-none"
                   onClick={() => {
                     setValue("Login");
                   }}

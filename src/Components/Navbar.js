@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import "../Components/Login.css";
 
 import { auth } from "../firebase";
 import Contact from "../images/contact-active.svg";
@@ -36,7 +37,7 @@ export default function Navbar({
 
 
   return (
-    <div className="bg-gray-800 text-white py-2 px-5 sticky  top-0 z-50">
+    <div className="bg-gray-800 text-white py-2 px-5 sticky  top-0 z-50  login-form">
       <nav className="">
         <div className="mx-auto flex justify-between items-center">
           <div className="space-x-2 flex">

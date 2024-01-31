@@ -1,10 +1,11 @@
 import React from "react";
+import "../Components/Login.css";
 
 const Contacts = ({ userDatabase, userId }) => {
   const userData = userDatabase[0] ? userDatabase.filter((data) => data.id !== userId) : [null];
 
   return (
-    <div className="py-6">
+    <div className="py-6  login-form">
       <div className="text-xl font-semibold py-4">Contacts</div>
       <div>
         {userData[0] &&

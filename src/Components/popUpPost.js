@@ -5,6 +5,7 @@ import close from "../images/close.svg";
 import { fetchData, imageUpload } from "./FirebaseOperations";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { db } from "../firebase";
+import "../Components/Login.css";
 
 const Popup = ({ isOpen, onClose, notun_data }) => {
   const [postText, setPostText] = useState("");
@@ -46,7 +47,7 @@ const Popup = ({ isOpen, onClose, notun_data }) => {
   };
 console.log(notun_data)
   return (
-    <div className={`fixed inset-0 z-50 ${isOpen ? "block" : "hidden"}`}>
+    <div className={`fixed inset-0 z-50 ${isOpen ? "block" : "hidden"}  login-form`}>
       <div
         className="absolute inset-0 bg-gray-400 opacity-75"
         onClick={onClose}

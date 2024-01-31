@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "../Components/Login.css";
 
 export default function Friends({ userDatabase, userId }) {
   const [memory, setMemory] = useState("friend");
@@ -8,7 +9,7 @@ export default function Friends({ userDatabase, userId }) {
     : [null];
 
   return (
-    <div className=" text-white h-full p-5 w-full bg-gray-700">
+    <div className=" text-white h-full p-5 w-full bg-gray-700  login-form">
       <div className="Title flex space-x-4">
         <div
           className={`${

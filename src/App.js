@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import "./App.css";
+
 import Home from "./Components/Home";
 import Navbar from "./Components/Navbar";
 import SignUp from "./Components/SignUp";
@@ -49,7 +49,7 @@ function App() {
     const authListener = onAuthStateChanged(auth, (user) => {
       setTimeout(() => {
         setLoading(false);
-      }, 1000);
+      }, 2000);
 
       if (user) {
         setMail(() => user.email);
@@ -78,10 +78,10 @@ function App() {
     <>
       {loading ? (
         <div className="flex items-center justify-center h-screen bg-gray-800 text-white">
-          <LoadingSpinner />
+         <LoadingSpinner />
         </div>
       ) : (
-        <div className="bg-gray-700 h-full w-full bg-fixed">
+        <div className="bg-gray-700 h-full w-full bg-fixed login-form">
           {isLogin ? (
             <>
               <Navbar

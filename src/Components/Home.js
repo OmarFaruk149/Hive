@@ -4,12 +4,14 @@ import React, { useState } from "react";
 import UserProfile from "../images/up.svg";
 import image from "../images/image.svg";
 import Popup from "./popUpPost";
+import "../Components/Login.css";
+
 
 export default function Home({ userDatabase, userId, notun_data }) {
   const [isPopupOpen, setPopupOpen] = useState(false);
 
   return (
-    <div className=" ">
+    <div className="  login-form">
       <div className="flex flex-row text-white h-screen fixed w-full bg-gray-700 pb-6">
 
 
