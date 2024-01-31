@@ -18,28 +18,29 @@ export default function Chat({ userDatabase, userId }) {
             {UserData.map((data, index) => (
               <>
                 <div
-                  className={`flex-col md:flex hover:text-cyan-400 ${
+                  className={`flex flex-col md:flex-row  hover:text-cyan-400 ${
                     profile == index
                       ? "bg-gray-800 text-cyan-400 rounded-lg"
                       : "hover:bg-gray-600 hover:rounded-lg"
                   } `}
                   onClick={() => setProfile(index)}
                 >
-                  <div className="p-1  md:m-1 h-12 w-12 md:h-14 md:w-14">
+                  <section className="p-1  md:m-1 h-12 w-12 md:h-14 md:w-14">
                     <img
                       src={data.photo}
                       alt={data.name}
-                      className="rounded-full m-3"
+                      className="rounded-full m-3 md:m-0"
                     />
-                  </div>
-                  <div className="p-3 ">
+                  </section>
+
+                  <section className="p-3 ">
                     <div className="text-xs font-bold font-sans">
                       {data.name}
                     </div>
                     <div className="hidden md:flex text-xs font-extralight text-gray-300">
                       Hi I'm using Hive.
                     </div>
-                  </div>
+                  </section>
                 </div>
               </>
             ))}

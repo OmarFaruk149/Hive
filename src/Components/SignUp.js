@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import Bg from "../images/img.jpg";
+import Bg from "../images/img1.jpg";
 import google from "../images/google.svg";
 import { createAccount, signInWithGoogle } from "./FirebaseOperations";
 
@@ -20,12 +20,12 @@ export default function SignUp({ setLogin, setValue }) {
         backgroundImage: `url(${Bg})`,
       }}
     >
-      <div className="lg:flex xl:flex">
-        <section className="section-1  flex-col pt-16 xl:pt-4 lg:pt-4 lg:mt-50 lg:absolute lg:left-64 lg:top-48">
+      <div className="lg:flex ">
+        <section className="section-1  flex-col pt-16 xl:pt-4 lg:pt-4 lg:mt-50 lg:absolute lg:left-20 lg:top-52 xl:left-60">
           <div className="text-teal-400 text-center text-3xl font-bold">
             Welcome To Hive
           </div>
-          <div className="text-teal-100 text-center text-lg mb-8">
+          <div className="text-teal-700 text-center text-lg mb-8">
             Let's Connect!
           </div>
           <div className="flex items-center justify-center">
@@ -42,8 +42,8 @@ export default function SignUp({ setLogin, setValue }) {
           </div>
         </section>
 
-        <section className="section-2 w-96 mx-auto my-10  xl:w-96 lg:w-96 lg:absolute lg:right-48">
-          <div className="bg-white bg-opacity-10 p-8 rounded-lg shadow-[0px_1px_15px_rgba(0,_196,_270,_.7)]">
+        <section className="section-2 p-4 w-96 mx-auto my-10  xl:w-96 lg:w-96 lg:absolute lg:right-48 xl:right-60">
+          <div className="bg-slate-800 bg-opacity-50 p-8 rounded-xl shadow-[0px_13px_20px_rgba(50,_20,_10,_1)]">
             <h2 className="text-2xl font-semibold mb-4 text-white">Sign Up</h2>
             <form>
               <div className="mb-4">
