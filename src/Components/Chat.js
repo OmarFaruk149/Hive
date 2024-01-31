@@ -11,7 +11,7 @@ export default function Chat({ userDatabase, userId }) {
   return (
     <>
       <div className=" login-form flex flex-row text-white h-screen fixed w-full bg-gray-700 ">
-        <div class="section-1 overflow-auto w-2/12 lg:w-3/12 border-r border-gray-800 ">
+        <div class="section-1 overflow-auto w-2/12 lg:w-3/12 border-r border-gray-800  login-form">
           <div className="sticky top-0 p-2 bg-gray-700">
             <h1 className="text-lg font-bold">Chat</h1>
           </div>
@@ -34,7 +34,7 @@ export default function Chat({ userDatabase, userId }) {
                   />
                 </section>
 
-                <section className="text-center md:text-left lg:text-left lg:p-2">
+                <section className="text-center md:text-left lg:text-left lg:p-2 ">
                   <div className="hidden sm:flex text-xs font-bold font-sans">
                     {data.name}
                   </div>
@@ -47,7 +47,7 @@ export default function Chat({ userDatabase, userId }) {
           </div>
         </div>
 
-        <div class="section-2 flex-1 overflow-auto w-6/12">
+        <div class="section-2 login-form flex-1 overflow-auto w-6/12">
           <div className="Navbar sticky top-0 bg-gray-700 border-b border-gray-800 w-full">
             <div className="Profile-section flex m-1 p-2 hover:text-cyan-500 hover:bg-gray-600 hover:rounded-lg w-1/3">
               <img
@@ -86,7 +86,7 @@ export default function Chat({ userDatabase, userId }) {
           </div>
         </div>
 
-        <div class="section-3 hidden xl:block w-3/12 overflow-auto border-l border-gray-800 p-6">
+        <div class="section-3 login-form hidden xl:block w-3/12 overflow-auto border-l border-gray-800 p-6">
           <div className="flex flex-col justify-center content-center bg-gray-800 rounded-lg pt-6">
             <div className="flex justify-center content-center">
               <img

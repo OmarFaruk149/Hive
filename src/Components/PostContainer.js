@@ -9,7 +9,7 @@ import {
   updateDoc,
 } from "firebase/firestore";
 import { db } from "../firebase";
-
+import "../Components/Login.css"
 import Like from "../images/like.png";
 import Comment from "../images/comment.png";
 import share from "../images/share.png";
@@ -55,7 +55,7 @@ export default function PostContainer({ notun_data }) {
   }, [Data]);
 
   return (
-    <div className="py-6">
+    <div className="py-6  login-form">
       {Data.map((item) => (
         <div className="bg-gray-800 text-white mx-5 rounded-lg  my-6">
           <div className="">
