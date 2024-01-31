@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import Home from "./Components/Home";
 import Navbar from "./Components/Navbar";
@@ -9,53 +9,81 @@ import Bg from "../src/images/img.jpg";
 import Chat from "./Components/Chat";
 import UserProfile from "./Components/UserProfile";
 import Board from "./Components/Games/Board";
-import { useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth, db } from "./firebase";
-import { collection, getDocs } from "firebase/firestore";
-import dp from "./images/girl.jpg";
+import { collection, getDocs, onSnapshot } from "firebase/firestore";
+const LoadingSpinner = () => {
+  return (
+    <div className="flex items-center justify-center h-screen">
+      <div className="animate-spin rounded-full border-t-4 border-blue-500 border-solid h-16 w-16"></div>
+    </div>
+  );
+};
 function App() {
   const [mail, setMail] = useState("");
   const [isLogin, setLogin] = useState(false);
   const [value, setValue] = useState("");
-
   const [userDatabase, setDatabase] = useState({});
-  useEffect(() => {
-    const Location = collection(db, "/userProfileData");
+  const [loading, setLoading] = useState(true);
 
-    const getData = async () => {
+  const Location = collection(db, "/userProfileData");
+
+  useEffect(() => {
+    const unsubscribe = onSnapshot(Location, (snapshot) => {
+      const data = snapshot.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+      }));
+      setDatabase(data);
+    });
+    return () => unsubscribe();
+  }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
       const val = await getDocs(Location);
       setDatabase(() => val.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     };
-    getData();
+    fetchData();
 
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
+    const authListener = onAuthStateChanged(auth, (user) => {
+      setTimeout(() => {
+        setLoading(false);
+      }, 1000);
+
       if (user) {
         setMail(() => user.email);
         setLogin(user);
         setValue("Home");
         console.log("Logged in");
       } else {
-        setLogin(user);
-        setValue("SignUp");
-        console.log("logged out");
+        setLogin(() => false);
+        // setValue(() => "SignUp");
+        console.log("Logged out");
       }
     });
-    return () => unsubscribe();
+
+    return () => authListener();
   }, []);
 
-  console.log(userDatabase[0]);
+  useEffect(() => {
+    console.log(isLogin);
+  }, [isLogin]);
+
   const notun_data = userDatabase[0]
     ? userDatabase.filter((data) => data.email === mail)
     : [{ id: null }];
-
-
+  
   return (
     <>
-      <div className=" bg-gray-700 h-full w-full bg-fixed">
-        {isLogin ? (
-          <>
-            {
+      {loading ? (
+        <div className="flex items-center justify-center h-screen bg-gray-800 text-white">
+          <LoadingSpinner />
+        </div>
+      ) : (
+        <div className="bg-gray-700 h-full w-full bg-fixed">
+          {isLogin ? (
+            <>
               <Navbar
                 userDatabase={userDatabase}
                 mail={mail}
@@ -63,25 +91,35 @@ function App() {
                 setValue={setValue}
                 value={value}
               />
-            }
-            {value == "UserProfile" ? (
-              <UserProfile userDatabase={userDatabase} mail={mail} />
-            ) : value == "Chat" ? (
-              <Chat userDatabase={userDatabase} userId={notun_data[0].id} />
-            ) : value == "Games" ? (
-              <Board setValue={setValue} setLogin={setLogin} />
-            ) : value == "Friends" ? (
-              <Friends userId={notun_data[0].id} userDatabase={userDatabase} />
-            ) : (
-              <Home userDatabase={userDatabase} userId={notun_data[0].id} notun_data={notun_data[0]} />
-            )}
-          </>
-        ) : value == "Login" ? (
-          <Login setValue={setValue} setLogin={setLogin} />
-        ) : (
-          <SignUp setLogin={setLogin} setValue={setValue} />
-        )}
-      </div>
+              {value === "UserProfile" ? (
+                <UserProfile userDatabase={userDatabase} mail={mail} />
+              ) : value === "Chat" ? (
+                <Chat
+                  userDatabase={userDatabase}
+                  userId={notun_data[0] && notun_data[0].id ? notun_data[0].id : null}
+                />
+              ) : value === "Games" ? (
+                <Board setValue={setValue} setLogin={setLogin} />
+              ) : value === "Friends" ? (
+                <Friends
+                  userId={notun_data[0] && notun_data[0].id ? notun_data[0].id : null}
+                  userDatabase={userDatabase}
+                />
+              ) : (
+                <Home
+                  userDatabase={userDatabase}
+                  notun_data={notun_data[0]}
+                  userId={notun_data[0] && notun_data[0].id ? notun_data[0].id : null}
+                />
+              )}
+            </>
+          ) : value === "Login" ? (
+            <Login setValue={setValue} setLogin={setLogin} />
+          ) : (
+            !isLogin && <SignUp setLogin={setLogin} setValue={setValue} />
+          )}
+        </div>
+      )}
     </>
   );
 }

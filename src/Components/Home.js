@@ -10,9 +10,11 @@ export default function Home({ userDatabase, userId, notun_data }) {
 
   return (
     <div className=" ">
-      <div className="grid grid-cols-12 gap-12 pb-6">
-        <div className="col-span-9 container ">
-          <div className="bg-gray-800 p-4 mx-5 rounded-lg mt-6 ">
+      <div className="flex flex-row text-white h-screen fixed w-full bg-gray-700 pb-6">
+
+
+        <section className="w-full lg:w-9/12 container overflow-auto">
+          <div className="bg-gray-800 p-4 mx-5 rounded-lg mt-6">
             <div className="flex items-center space-x-4 mb-4">
               <img
                 src={
@@ -51,14 +53,18 @@ export default function Home({ userDatabase, userId, notun_data }) {
             onClose={() => setPopupOpen(false)}
             notun_data={notun_data}
           />
-          <div className="mx-auto mt-4">
+          <div className="mx-auto mb-6">
             <PostContainer notun_data={notun_data} />
           </div>
-        </div>
+        </section>
+
         {/* <div className="col-span-1 h-full"></div> */}
-        <div className="hidden lg:flex text-white font-thin col-span-3 mt-5 mr-5 px-6">
+        <section className="hidden lg:block text-white font-thin w-3/12 my-5 px-6 overflow-y-scroll sticky right-0 ">
           <Contacts userDatabase={userDatabase} userId={userId}/>
-        </div>
+          <Contacts userDatabase={userDatabase} userId={userId}/>
+          <Contacts userDatabase={userDatabase} userId={userId}/>
+          <Contacts userDatabase={userDatabase} userId={userId}/>
+        </section>
       </div>
     </div>
   );

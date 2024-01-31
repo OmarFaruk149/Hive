@@ -75,7 +75,10 @@ export const createAccount = async ({
       return;
     }
     setAcVisited(true);
-    const photoLink = await photoUpload(visited, setVisited, Image);
+    let photoLink = "https://shorturl.at/anuCW";
+    if(Image){
+      photoLink = await photoUpload(visited, setVisited, Image);
+    }
 
     const userInfo = await createUserWithEmailAndPassword(
       auth,
@@ -84,7 +87,7 @@ export const createAccount = async ({
     );
     const user = userInfo.user;
     let data = {
-      name: userName,
+      name: userName ? userName : "Hive User",
       email: userMail,
       photo: photoLink,
     };

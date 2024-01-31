@@ -10,39 +10,38 @@ export default function Chat({ userDatabase, userId }) {
   return (
     <>
       <div className="flex flex-row text-white h-screen fixed w-full bg-gray-700">
-        <div class="section-1 overflow-auto w-3/12 border-r border-gray-800 ">
+        <div class="section-1 overflow-auto w-2/12 border-r border-gray-800 ">
           <div className="sticky top-0 p-2 bg-gray-700">
             <h1 className="text-lg font-bold">Chat</h1>
           </div>
-          <div className="User_list p-2">
+          <div className="User_list p-1">
             {UserData.map((data, index) => (
-              <>
-                <div
-                  className={`flex flex-col md:flex-row  hover:text-cyan-400 ${
-                    profile == index
-                      ? "bg-gray-800 text-cyan-400 rounded-lg"
-                      : "hover:bg-gray-600 hover:rounded-lg"
-                  } `}
-                  onClick={() => setProfile(index)}
-                >
-                  <section className="p-1  md:m-1 h-12 w-12 md:h-14 md:w-14">
-                    <img
-                      src={data.photo}
-                      alt={data.name}
-                      className="rounded-full m-3 md:m-0"
-                    />
-                  </section>
+              <div
+                className={`flex flex-col p-1 lg:flex-row items-center justify-center lg:items-start lg:justify-start hover:text-cyan-400 ${
+                  profile === index
+                    ? "bg-gray-800 text-cyan-400 rounded-lg"
+                    : "hover:bg-gray-600 hover:rounded-lg"
+                }`}
+                onClick={() => setProfile(index)}
+                key={data.id}
+              >
+                <section className="h-12 w-12 lg:h-14 lg:w-14">
+                  <img
+                    src={data.photo}
+                    alt={data.name}
+                    className={`rounded-full h-full w-full p-1`}
+                  />
+                </section>
 
-                  <section className="p-3 ">
-                    <div className="text-xs font-bold font-sans">
-                      {data.name}
-                    </div>
-                    <div className="hidden md:flex text-xs font-extralight text-gray-300">
-                      Hi I'm using Hive.
-                    </div>
-                  </section>
-                </div>
-              </>
+                <section className="text-center md:text-left lg:text-left lg:p-2">
+                  <div className="hidden sm:flex text-xs font-bold font-sans">
+                    {data.name}
+                  </div>
+                  <div className="hidden lg:flex text-xs font-extralight text-gray-300">
+                    Hi I'm using Hive.
+                  </div>
+                </section>
+              </div>
             ))}
           </div>
         </div>

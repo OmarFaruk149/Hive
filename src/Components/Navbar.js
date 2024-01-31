@@ -22,33 +22,35 @@ export default function Navbar({
   const notun_data = userDatabase[0]
     ? userDatabase.filter((data) => data.email === mail)
     : [null];
-  // console.log(notun_data[0].photo);
+
   const logOut = async () => {
     try {
       const user = await signOut(auth);
       console.log(user);
-      setLogin(false);
-      setValue("SignUp");
+      setLogin(()=>user);
+      setValue(()=>"SignUp");
     } catch (error) {
       console.log(error);
     }
   };
+
 
   return (
     <div className="bg-gray-800 text-white py-2 px-5 sticky  top-0 z-50">
       <nav className="">
         <div className="mx-auto flex justify-between items-center">
           <div className="space-x-2 flex">
-                <img
-                  onClick={() => setValue("Home")}
-                  src={Logo}
-                  alt=""
-                  className="h-11  w-11 p-1 md:ml-6 rounded-full border-2 border-cyan-500 shadow-[0px_1px_15px_rgba(0,_196,_270,_1)]"
-                />
-                <div className="hidden md:flex h-auto w-auto text-lg font-semibold text-cyan-300 shadow-[0px_1px_15px_rgba(0,_196,_270,_.7)]  bg-gray-800 rounded-lg p-2">
-                  {notun_data[0] && notun_data[0].name ? notun_data[0].name : "Hive"}
-                </div>
-
+            <img
+              onClick={() => setValue("Home")}
+              src={Logo}
+              alt=""
+              className="h-11  w-11 p-1 md:ml-6 rounded-full border-2 border-cyan-500 shadow-[0px_1px_15px_rgba(0,_196,_270,_1)]"
+            />
+            <div className="hidden md:flex h-auto w-auto text-lg font-semibold text-cyan-300 shadow-[0px_1px_15px_rgba(0,_196,_270,_.7)]  bg-gray-800 rounded-lg p-2">
+              {notun_data[0] && notun_data[0].name
+                ? notun_data[0].name
+                : "Hive"}
+            </div>
           </div>
           <div className="space-x-2 md:space-x-4 flex flex-row">
             <button
@@ -124,7 +126,7 @@ export default function Navbar({
             </button>
             <button
               className={`Logout  ${
-                value === "LogOut"
+                value === "SignUp"
                   ? "bg-cyan-400  rounded-full shadow-[0px_1px_15px_rgba(0,_196,_270,_1)] p-1"
                   : "mx-auto flex justify-between items-center bg-gray-400 hover:bg-gray-300 shadow-[0px_1px_15px_rgba(0,_196,_270,_1)] p-1 rounded-full "
               } `}

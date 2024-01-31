@@ -13,6 +13,7 @@ import { db } from "../firebase";
 import Like from "../images/like.png";
 import Comment from "../images/comment.png";
 import share from "../images/share.png";
+import CommentSection from "./CommentSection";
 
 export default function PostContainer({ notun_data }) {
   const postRef = collection(db, "/postContainer");
@@ -54,9 +55,9 @@ export default function PostContainer({ notun_data }) {
   }, [Data]);
 
   return (
-    <div className="">
+    <div className="py-6">
       {Data.map((item) => (
-        <div className="bg-gray-800 text-white mx-5 rounded-lg  mt-6">
+        <div className="bg-gray-800 text-white mx-5 rounded-lg  my-6">
           <div className="">
             <div className="p-4">
               <div className="flex items-center">
@@ -121,6 +122,7 @@ export default function PostContainer({ notun_data }) {
                   <img src={Comment} alt="Like" className="w-6 h-6" />
                 </div>
               </button>
+              {/* <CommentSection postID={item.post_ID} notun_data={notun_data} /> */}
 
               <button
                 className="flex-1 space-x-1 flex my-2 bg-gray-700 hover:bg-gray-600 mx-4 rounded-md p-1 justify-center content-center "
