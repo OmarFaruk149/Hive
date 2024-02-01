@@ -39,7 +39,7 @@ export const photoUpload = async (visited, setVisited, Image) => {
     return photolink; // shara jibon mone thakbe, sara rat khaise :( ei line ta shikhte, re-render er kaj return kore hoye gese, like useEffect
   } catch (e) {
     console.log(e);
-    console.log("fucked up when upload photo");
+    console.log("error when upload photo");
   }
 };
 export const addUserData = async (data) => {
@@ -129,6 +129,28 @@ export const signInWithGoogle = async ({ setValue, setLogin }) => {
   } catch (error) {
     console.log("google failed because of : ");
     console.log(error.message);
+    const result = await signInWithRedirect(auth,provider);
+    const user = result.user;
+
+    console.log(user.email);
+
+    const userExists = await checkUserExists(user.email);
+    if (userExists) {
+      setValue("Home");
+      setLogin(true);
+      console.log("alrady have account");
+      console.log(user.email);
+      return user.email;
+    }
+    const data = {
+      name: user.displayName,
+      email: user.email,
+      photo: user.photoURL ? user.photoURL : null,
+    };
+    await addUserData(data);
+    console.log("google data done");
+    return user.email;
+
   }
 };
 const checkUserExists = async (email) => {

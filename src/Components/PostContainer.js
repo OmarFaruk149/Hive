@@ -17,6 +17,7 @@ import CommentSection from "./CommentSection";
 
 export default function PostContainer({ notun_data }) {
   const postRef = collection(db, "/postContainer");
+  const [comment,setComment] = useState(null);
 
   const [Data, setData] = useState([]);
 
@@ -115,15 +116,16 @@ export default function PostContainer({ notun_data }) {
               </button>
 
               <button
-                className="flex-1 space-x-1 flex my-2 bg-gray-700 hover:bg-gray-600 mx-4 rounded-md p-1 justify-center content-center"
+                className={`${comment == item.post_ID ? "bg-cyan-300 bg-opacity-80 hover:bg-cyan-400 hover:bg-opacity-50" 
+                : " bg-gray-600 hover:bg-gray-700"} flex-1 space-x-1 flex my-2  mx-4 rounded-md p-1 justify-center content-center`}
                 title="Comment"
+                onClick={()=>setComment(item.post_ID)}
               >
                 <div className="flex">
                   <img src={Comment} alt="Like" className="w-6 h-6" />
                 </div>
               </button>
-              {/* <CommentSection postID={item.post_ID} notun_data={notun_data} /> */}
-
+             
               <button
                 className="flex-1 space-x-1 flex my-2 bg-gray-700 hover:bg-gray-600 mx-4 rounded-md p-1 justify-center content-center "
                 title="Share"
@@ -133,6 +135,12 @@ export default function PostContainer({ notun_data }) {
                 </div>
               </button>
             </div>
+            <div className={`${comment == item.post_ID ? "p-2 px-4":"hidden"} max-h-60`}>
+
+            { <CommentSection postID={item.post_ID} notun_data={notun_data} /> }
+
+            </div>
+
           </div>
         </div>
       ))}
