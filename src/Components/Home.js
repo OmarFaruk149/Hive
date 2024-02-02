@@ -60,7 +60,6 @@ export default function Home({ userDatabase, userId, notun_data }) {
           </div>
         </section>
 
-        {/* <div className="col-span-1 h-full"></div> */}
         <section className="hidden lg:block text-white font-thin w-3/12 my-5 px-6 overflow-y-scroll sticky right-0 ">
           <Contacts userDatabase={userDatabase} userId={userId}/>
         </section>

@@ -124,6 +124,7 @@ export default function PostContainer({ notun_data }) {
                 <div className="flex">
                   <img src={Comment} alt="Like" className="w-6 h-6" />
                 </div>
+                <p className="m-auto px-1"> {item.commentCount} </p>
               </button>
              
               <button

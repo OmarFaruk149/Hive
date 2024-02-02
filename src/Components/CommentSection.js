@@ -2,8 +2,11 @@ import React, { useEffect, useState } from "react";
 import {
   addDoc,
   collection,
+  doc,
+  increment,
   onSnapshot,
   serverTimestamp,
+  updateDoc,
 } from "firebase/firestore";
 import { db } from "../firebase";
 
@@ -12,6 +15,7 @@ const CommentSection = ({ postID, notun_data }) => {
   const [comments, setComments] = useState([]);
   const [loading, setLoading] = useState(false);
   const postRef = collection(db, `postContainer/${postID}/Comments`);
+  const postLoc = doc(db, "/postContainer", postID);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -24,6 +28,9 @@ const CommentSection = ({ postID, notun_data }) => {
         image: notun_data.photo,
         name: notun_data.name,
         time: serverTimestamp(),
+      });
+      await updateDoc(postLoc, {
+        commentCount: increment(1),
       });
       setComment("");
     } catch (error) {
@@ -38,7 +45,7 @@ const CommentSection = ({ postID, notun_data }) => {
       const data = snap.docs.map((data) => ({ id: data.id, ...data.data() }));
       setComments(() => data);
     });
-  }, [comments, postRef]);
+  }, []);
 
   return (
     <div className="my-2 max-h-56 overflow-y-auto">
