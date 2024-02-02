@@ -2,11 +2,16 @@ import React from "react";
 import "../Components/Login.css";
 
 const Contacts = ({ userDatabase, userId }) => {
-  const userData = userDatabase[0] ? userDatabase.filter((data) => data.id !== userId) : [null];
+ const idList = userDatabase[0] 
+  ? userDatabase.find((data) => data.id === userId)
+  : null;
+const userData = idList && idList.friends
+  ? userDatabase.filter((data) => idList.friends[data.id] === true)
+  : null;
 
   return (
     <div className="py-6  login-form">
-      <div className="text-xl font-semibold py-4">Contacts</div>
+      <div className="text-xl font-semibold py-4">Contacts {userData.length}</div>
       <div>
         {userData[0] &&
           userData.map((item) => (

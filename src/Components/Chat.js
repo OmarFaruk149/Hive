@@ -5,9 +5,12 @@ import NotificationIcon from "../images/notification.svg";
 import SearchIcon from "../images/search.svg";
 export default function Chat({ userDatabase, userId }) {
   const [profile, setProfile] = useState(0);
-  const UserData = userDatabase[0]
-    ? userDatabase.filter((data) => data.id !== userId)
-    : [null];
+  const idList = userDatabase[0] 
+  ? userDatabase.find((data) => data.id === userId)
+  : null;
+const userData = idList && idList.friends
+  ? userDatabase.filter((data) => idList.friends[data.id] === true)
+  : null;
   return (
     <>
       <div className=" login-form flex flex-row text-white h-screen fixed w-full bg-gray-700 ">
@@ -16,7 +19,7 @@ export default function Chat({ userDatabase, userId }) {
             <h1 className="text-lg font-bold">Chat</h1>
           </div>
           <div className="User_list p-1">
-            {UserData.map((data, index) => (
+            {userData.map((data, index) => (
               <div
                 className={`flex flex-col p-1 lg:flex-row items-center justify-center lg:items-start lg:justify-start hover:text-cyan-400 ${
                   profile === index
@@ -51,12 +54,12 @@ export default function Chat({ userDatabase, userId }) {
           <div className="Navbar sticky top-0 bg-gray-700 border-b border-gray-800 w-full">
             <div className="Profile-section flex m-1 p-2 hover:text-cyan-500 hover:bg-gray-600 hover:rounded-lg w-1/3">
               <img
-                src={UserData[profile].photo}
-                alt={UserData[profile].name}
+                src={userData[profile].photo}
+                alt={userData[profile].name}
                 className="h-10 w-10 rounded-full"
               />
               <div className="py-2 px-1 mx-1 font-sans font-bold">
-                {UserData[profile].name}
+                {userData[profile].name}
               </div>
             </div>
           </div>
@@ -64,12 +67,12 @@ export default function Chat({ userDatabase, userId }) {
           <div className="profile flex justify-center content-center m-4 p-4">
             <div className="photo">
               <img
-                src={UserData[profile].photo}
-                alt={UserData[profile].name}
+                src={userData[profile].photo}
+                alt={userData[profile].name}
                 className="rounded-full h-36 w-36"
               />
               <div className="font-bold text-center text-sm p-1">
-                {UserData[profile].name}
+                {userData[profile].name}
               </div>
             </div>
           </div>
@@ -90,14 +93,14 @@ export default function Chat({ userDatabase, userId }) {
           <div className="flex flex-col justify-center content-center bg-gray-800 rounded-lg pt-6">
             <div className="flex justify-center content-center">
               <img
-                src={UserData[profile].photo}
-                alt={UserData[profile].name}
+                src={userData[profile].photo}
+                alt={userData[profile].name}
                 className=" rounded-full p-1 h-20 w-20"
               />
             </div>
 
             <div className="flex justify-center content-center font-bold text-lg font-mono p-1">
-              {UserData[profile].name}
+              {userData[profile].name}
             </div>
 
             <div className="flex justify-center content-center p-4">

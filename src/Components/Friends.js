@@ -1,12 +1,68 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../Components/Login.css";
+import { FieldValue, doc, updateDoc } from "firebase/firestore";
+import { db } from "../firebase";
 
 export default function Friends({ userDatabase, userId }) {
   const [memory, setMemory] = useState("friend");
+  const [added,setAdded] = useState('');
+  
+  const idList = userDatabase[0] 
+  ? userDatabase.find((data) => data.id === userId)
+  : null;
 
+
+const requestList = idList && idList.friendRequest
+  ? userDatabase.filter((data) => idList.friendRequest[data.id] === true)
+  : null;
+  
   const userData = userDatabase[0]
-    ? userDatabase.filter((data) => data.id !== userId)
-    : [null];
+  ? userDatabase.filter((data) => {
+    return data.id !== userId &&
+      !(idList.friendRequest && idList.friendRequest[data.id] === true) &&
+      !(idList.friends && idList.friends[data.id] === true) &&
+      !(idList.requested && idList.requested[data.id] === true);
+  })
+  : [null];
+
+  const requestedList = idList && idList.requested
+  ? userDatabase.filter((data) => idList.requested[data.id] === true)
+  : null;
+
+console.log("userData: ", userData);
+
+  const userRef = doc(db,"/userProfileData",userId);
+
+
+  const handleAdd = (userId,requestId)=>{
+    const requestRef = doc(db,"/userProfileData",requestId);
+    setAdded('added');
+    updateDoc(requestRef,{
+      [`friendRequest.${userId}`]: true,
+    })
+    updateDoc(userRef,{
+      [`requested.${requestId}`]:true,
+    })
+  }
+  
+  const handleAccept = (userIdToAccept)=>{
+    updateDoc(userRef,{
+      [`friends.${userIdToAccept}`]: true,
+      [`friendRequest.${userIdToAccept}`]: false,
+    })
+    updateDoc(doc(db,'/userProfileData',userIdToAccept),{
+      [`requested.${userId}`]:false,
+    });
+  }
+const handleCancel = (userIdToCancel)=>{
+  updateDoc(userRef,{
+    [`requested.${userIdToCancel}`]:false,
+  })
+  updateDoc(doc(db,'/userProfileData',userIdToCancel),{
+    [`friendRequest.${userId}`]:false,
+  })
+}
+console.log("request: " + requestList);
 
   return (
     <div className=" text-white h-full p-5 w-full bg-gray-700  login-form">
@@ -27,6 +83,14 @@ export default function Friends({ userDatabase, userId }) {
         >
           Friend requests
         </div>
+        <div
+          className={`${
+            memory == "requested" ? "text-cyan-500" : "hover:bg-gray-600"
+          } rounded-full  bg-gray-800 p-2 ml-2`}
+          onClick={() => setMemory("requested")}
+        >
+          Requested list
+        </div>
       </div>
 
       <section className={`Section-1 ${memory !== "friend" ? "hidden" : ""} `}>
@@ -41,7 +105,7 @@ export default function Friends({ userDatabase, userId }) {
                 />
                 <div className="ml-2">
                   <h1 className="avatar text-lg font-bold">{data.name}</h1>
-                  <div className="mb-2">Connects: {"NaN"}</div>
+                  <div className="mb-2">Connects: {"None"}</div>
                 </div>
               </div>
               <div className="flex md:justify-end py-2 space-x-2">
@@ -49,9 +113,10 @@ export default function Friends({ userDatabase, userId }) {
                   className="bg-cyan-700 rounded-lg p-2 hover:bg-cyan-600"
                   onClick={(event) => {
                     event.preventDefault();
+                     handleAdd(userId,data.id);
                   }}
                 >
-                  <div className="">Add+</div>
+                  <div className="">{data.friendRequest && data.friendRequest[userId] ? "Requested" : "Add+"}</div>
                 </button>
                 <button
                   className="bg-cyan-700 rounded-lg p-2 hover:bg-cyan-600"
@@ -77,7 +142,7 @@ export default function Friends({ userDatabase, userId }) {
 
       <section className={`Section-2 ${memory !== "request" ? "hidden" : ""} `}>
         <div className="Find-friend box-border md:flex md:flex-wrap md:justify-between">
-          {userData.map((data, index) => (
+            { requestList &&  requestList.map((data, index) => (
             <div className="p-5 text-white rounded-xl bg-gray-800 my-2 w-full md:w-5/12 lg:w-80 ">
               <div className="flex">
                 <img
@@ -87,7 +152,7 @@ export default function Friends({ userDatabase, userId }) {
                 />
                 <div className="ml-2">
                   <h1 className="avatar text-lg font-bold">{data.name}</h1>
-                  <div className="mb-2">Connects: {"NaN"}</div>
+                  <div className="mb-2">Connects: {"None"}</div>
                 </div>
               </div>
               <div className="flex md:justify-end py-2 space-x-2">
@@ -95,6 +160,7 @@ export default function Friends({ userDatabase, userId }) {
                   className="bg-cyan-700 rounded-lg p-2 hover:bg-cyan-600"
                   onClick={(event) => {
                     event.preventDefault();
+                    handleAccept(data.id);
                   }}
                 >
                   <div className="">Accept</div>
@@ -120,6 +186,54 @@ export default function Friends({ userDatabase, userId }) {
           ))}
         </div>
       </section>
+
+      <section className={`Section-3 ${memory !== "requested" ? "hidden" : ""} `}>
+        <div className="Find-friend box-border md:flex md:flex-wrap md:justify-between">
+            { requestedList &&  requestedList.map((data, index) => (
+            <div className="p-5 text-white rounded-xl bg-gray-800 my-2 w-full md:w-5/12 lg:w-80 ">
+              <div className="flex">
+                <img
+                  src={data.photo}
+                  alt={data.name}
+                  className="rounded-full h-16 w-16"
+                />
+                <div className="ml-2">
+                  <h1 className="avatar text-lg font-bold">{data.name}</h1>
+                  <div className="mb-2">Connects: {"None"}</div>
+                </div>
+              </div>
+              <div className="flex md:justify-end py-2 space-x-2">
+                <button
+                  className="bg-cyan-700 rounded-lg p-2 hover:bg-cyan-600"
+                  onClick={(event) => {
+                    event.preventDefault();
+                    handleCancel(data.id);
+                  }}
+                >
+                  <div className="">Cancel Request</div>
+                </button>
+                <button
+                  className="bg-cyan-700 rounded-lg p-2 hover:bg-cyan-600"
+                  onClick={(event) => {
+                    event.preventDefault();
+                  }}
+                >
+                  <div className="">Profile</div>
+                </button>
+                <button
+                  className="bg-cyan-700 rounded-lg p-2 hover:bg-cyan-600"
+                  onClick={(event) => {
+                    event.preventDefault();
+                  }}
+                >
+                  <div className="">Message</div>
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
     </div>
   );
 }
