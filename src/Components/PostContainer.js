@@ -133,9 +133,9 @@ export default function PostContainer({ notun_data, unknown }) {
                 onClick={() => setComment(item.post_ID)}
               >
                 <div className="flex">
-                  <img src={Comment} alt="Like" className="w-6 h-6" />
+                  <img src={Comment} alt="Comment" className="w-6 h-6" />
                 </div>
-                <p className="m-auto px-1"> {item.commentCount} </p>
+                <p className="m-auto px-1"> {item.commentCount ? item.commentCount : ''} </p>
               </button>
 
               <button

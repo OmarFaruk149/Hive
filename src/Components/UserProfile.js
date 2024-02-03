@@ -7,16 +7,44 @@ import uploadIcon from "../images/upload.svg";
 import "../Components/Login.css";
 import Contacts from "./Contacts";
 import PostContainer from "./PostContainer";
+import { addDoc, collection } from "firebase/firestore";
+import { db } from "../firebase";
 
 export default function UserProfile({ userDatabase, notun_data }) {
   const [memory, setMemory] = useState("");
   const [cover, setCover] = useState(null);
   const [profile, setProfile] = useState(null);
   
+  const dbRef = collection(db, "/postContainer");
+
+  const handlePost = async (link,postText) => {
+    
+    try {
+      await addDoc(dbRef, {
+        uploadTime: new Date(),
+        uid: notun_data.id,
+        postText: postText,
+        post_image: link,
+        user_name: notun_data.name,
+        user_mail: notun_data.email,
+        user_image: notun_data.photo,
+        like_count: 0,
+        liked_by: [],
+      });
+
+      console.log("data uploaded successfuly!!!");
+    }
+       catch (error) {
+      console.error("not upload post data , because of ", error);
+    }
+  };
+
+
   const updateProfile = async () => {
     if (profile) {
       const url = await imageUpload(profile, "photo");
       addPhotoOrCover(notun_data.id, "photo", url);
+      handlePost(url,'Profile picture uploaded');
       setProfile(null);
     }
   };
@@ -24,6 +52,7 @@ export default function UserProfile({ userDatabase, notun_data }) {
     if (cover) {
       const url = await imageUpload(cover, "CoverPhoto");
       addPhotoOrCover(notun_data.id, "coverPhoto", url);
+      handlePost(url,"Cover photo uploaded");
       setCover(null);
     }
   };
@@ -144,7 +173,7 @@ export default function UserProfile({ userDatabase, notun_data }) {
             <Contacts userDatabase={userDatabase} userId={notun_data.id} />
           </div>
 
-              <div className={`${memory !== 'timeline' ?  "hidden" : ""} w-auto p-2 m-auto flex text-cyan-600 justify-center content-center`}>
+              <div className={`${memory !== 'timeline' ?  "hidden" : ""}  flex text-cyan-600 justify-center content-center`}>
                     <PostContainer notun_data={notun_data} unknown={'Profile'}/>
               </div>
 

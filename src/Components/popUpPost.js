@@ -26,6 +26,7 @@ const Popup = ({ isOpen, onClose, notun_data }) => {
     }
 
     try {
+      if(Image || postText.length>1){
       await addDoc(dbRef, {
         uploadTime: serverTimestamp(),
         uid: notun_data.id,
@@ -39,15 +40,22 @@ const Popup = ({ isOpen, onClose, notun_data }) => {
       });
 
       console.log("data uploaded successfuly!!!");
-      link = null;
+      link = null;}
+      else{
+        alert("Not enough data!");
+      }
     } catch (error) {
       console.error("not upload post data , because of ", error);
     }
     onClose();
   };
-console.log(notun_data)
+  console.log(notun_data);
   return (
-    <div className={`fixed inset-0 z-50 ${isOpen ? "block" : "hidden"}  login-form`}>
+    <div
+      className={`fixed inset-0 z-50 ${
+        isOpen ? "block" : "hidden"
+      }  login-form`}
+    >
       <div
         className="absolute inset-0 bg-gray-400 opacity-75"
         onClick={onClose}
@@ -80,9 +88,7 @@ console.log(notun_data)
                 className="w-8 h-8 rounded-full"
               />
               <div className="p-1">
-                {notun_data && notun_data.name
-                  ? notun_data.name
-                  : "Hive"}
+                {notun_data && notun_data.name ? notun_data.name : "Hive"}
               </div>
             </div>
           </div>
@@ -92,7 +98,7 @@ console.log(notun_data)
               className="bg-gray-500 p-2 focus:outline-none rounded-md resize-none overflow-auto"
               name=""
               id=""
-              cols="45"
+              cols="40"
               rows="10"
               placeholder="What's on your mind ?"
               onChange={(e) => setPostText(e.target.value)}
@@ -110,15 +116,16 @@ console.log(notun_data)
             />
             <label
               htmlFor="fileInput"
-              className="p-1 my-1 flex justify-center content-center hover bg-gray-500 hover:bg-gray-400 rounded-md"
+              className={`${Image ? " bg-cyan-400 hover:bg-cyan-500" : " bg-gray-500 hover:bg-gray-400"} p-1 my-1 flex justify-center content-center hover  rounded-md`}
             >
               {Image ? "Photo selected" : "Upload photo"}
             </label>
           </div>
-          <div className="flex justify-center bg-cyan-400 hover:bg-cyan-500 content-center rounded-md">
-            <button className=" text-white px-4 py-2" onClick={handlePost}>
-              Post
-            </button>
+          <div
+            className="flex justify-center bg-cyan-400 hover:bg-cyan-500 content-center rounded-md"
+            onClick={handlePost}
+          >
+            <button className=" text-white px-4 py-2" onClick={(e)=>e.preventDefault()}>Post</button>
           </div>
         </div>
       </div>
