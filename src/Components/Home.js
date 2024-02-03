@@ -55,7 +55,7 @@ export default function Home({ userDatabase, userId, notun_data }) {
             onClose={() => setPopupOpen(false)}
             notun_data={notun_data}
           />
-          <div className="mx-auto mb-6">
+          <div className="mx-auto mb-6 ">
             <PostContainer notun_data={notun_data} unknown={"Home"} />
           </div>
         </section>

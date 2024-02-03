@@ -97,7 +97,7 @@ export default function UserProfile({ userDatabase, notun_data }) {
                   type="file"
                   id="coverFileInput"
                   className="hidden"
-                  onChange={(e) => setCover(e.target.files)}
+                  onChange={(e) => setCover(e.target.files[0])}
                 />
                 <label
                   htmlFor="coverFileInput"
@@ -123,7 +123,7 @@ export default function UserProfile({ userDatabase, notun_data }) {
                   type="file"
                   id="profileFileInput"
                   className="hidden"
-                  onChange={(e) => setProfile(e.target.files)}
+                  onChange={(e) => setProfile(e.target.files[0])}
                 />
                 <label
                   htmlFor="profileFileInput"
@@ -173,7 +173,7 @@ export default function UserProfile({ userDatabase, notun_data }) {
             <Contacts userDatabase={userDatabase} userId={notun_data.id} />
           </div>
 
-              <div className={`${memory !== 'timeline' ?  "hidden" : ""}  flex text-cyan-600 justify-center content-center`}>
+              <div className={`${memory !== 'timeline' ?  "hidden" : ""}  flex text-cyan-600 justify-center content-center lg:w-1/3`}>
                     <PostContainer notun_data={notun_data} unknown={'Profile'}/>
               </div>
 
