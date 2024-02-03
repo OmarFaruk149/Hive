@@ -9,15 +9,15 @@ import {
   updateDoc,
 } from "firebase/firestore";
 import { db } from "../firebase";
-import "../Components/Login.css"
+import "../Components/Login.css";
 import Like from "../images/like.png";
 import Comment from "../images/comment.png";
 import share from "../images/share.png";
 import CommentSection from "./CommentSection";
 
-export default function PostContainer({ notun_data }) {
+export default function PostContainer({ notun_data, unknown }) {
   const postRef = collection(db, "/postContainer");
-  const [comment,setComment] = useState(null);
+  const [comment, setComment] = useState(null);
 
   const [Data, setData] = useState([]);
 
@@ -27,7 +27,15 @@ export default function PostContainer({ notun_data }) {
         ...doc.data(),
         post_ID: doc.id,
       }));
-      setData(data);
+
+      if (unknown === "Profile") {
+        const userPost = data.filter((data) => {
+          return data.uid === notun_data.id;
+        });
+        setData(userPost);
+      } else {
+        setData(data);
+      }
     });
     return () => unsubscribe();
   }, []);
@@ -98,7 +106,7 @@ export default function PostContainer({ notun_data }) {
               <button
                 className={`${
                   item.liked_by && item.liked_by.includes(notun_data.id)
-                    ? "bg-cyan-300 bg-opacity-80 hover:bg-cyan-400 hover:bg-opacity-50" 
+                    ? "bg-cyan-300 bg-opacity-80 hover:bg-cyan-400 hover:bg-opacity-50"
                     : " bg-gray-600 hover:bg-gray-700"
                 } flex-1 space-x-1 flex my-2   mx-4 rounded-md p-1 justify-center content-center`}
                 title="Like"
@@ -116,17 +124,20 @@ export default function PostContainer({ notun_data }) {
               </button>
 
               <button
-                className={`${comment == item.post_ID ? "bg-cyan-300 bg-opacity-80 hover:bg-cyan-400 hover:bg-opacity-50" 
-                : " bg-gray-600 hover:bg-gray-700"} flex-1 space-x-1 flex my-2  mx-4 rounded-md p-1 justify-center content-center`}
+                className={`${
+                  comment == item.post_ID
+                    ? "bg-cyan-300 bg-opacity-80 hover:bg-cyan-400 hover:bg-opacity-50"
+                    : " bg-gray-600 hover:bg-gray-700"
+                } flex-1 space-x-1 flex my-2  mx-4 rounded-md p-1 justify-center content-center`}
                 title="Comment"
-                onClick={()=>setComment(item.post_ID)}
+                onClick={() => setComment(item.post_ID)}
               >
                 <div className="flex">
                   <img src={Comment} alt="Like" className="w-6 h-6" />
                 </div>
                 <p className="m-auto px-1"> {item.commentCount} </p>
               </button>
-             
+
               <button
                 className="flex-1 space-x-1 flex my-2 bg-gray-700 hover:bg-gray-600 mx-4 rounded-md p-1 justify-center content-center "
                 title="Share"
@@ -136,12 +147,13 @@ export default function PostContainer({ notun_data }) {
                 </div>
               </button>
             </div>
-            <div className={`${comment == item.post_ID ? "p-2 px-4":"hidden"} max-h-60`}>
-
-            { <CommentSection postID={item.post_ID} notun_data={notun_data} /> }
-
+            <div
+              className={`${
+                comment == item.post_ID ? "p-2 px-4" : "hidden"
+              } max-h-60`}
+            >
+              {<CommentSection postID={item.post_ID} notun_data={notun_data} />}
             </div>
-
           </div>
         </div>
       ))}

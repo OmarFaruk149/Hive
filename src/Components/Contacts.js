@@ -13,9 +13,8 @@ const userData = idList && idList.friends
 
   return (
     <div className="py-6  login-form">
-      <div className="text-xl font-semibold py-4">Contacts  </div>
       <div>
-        {userData.length >0  &&
+        {userData.length >0  ?
           userData.map((item) => (
             <div
               key={item.id}
@@ -24,7 +23,11 @@ const userData = idList && idList.friends
               <img src={item.photo} alt={item.name} className="w-8 h-8 p-1 rounded-full" />
               <div className="text-sm font-sans p-1">{item.name}</div>
             </div>
-          ))}
+          ))
+          :(
+            <div className="">No friends</div>
+          )
+        }
       </div>
     </div>
   );

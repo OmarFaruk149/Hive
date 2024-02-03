@@ -66,12 +66,12 @@ const handleCancel = (userIdToCancel)=>{
 console.log("request: " + requestList);
 
   return (
-    <div className=" text-white h-full p-5 w-full bg-gray-700  login-form">
-      <div className="Title flex space-x-4">
+    <div className=" text-white h-full p-5 bg-gray-700  login-form">
+      <div className="Title flex space-x-2">
         <div
           className={`${
             memory == "friend" ? "text-cyan-500" : "hover:bg-gray-600"
-          } rounded-full  bg-gray-800 p-2 ml-2`}
+          } rounded-full  bg-gray-800 p-2`}
           onClick={() => setMemory("friend")}
         >
           Find friends
@@ -79,18 +79,18 @@ console.log("request: " + requestList);
         <div
           className={`${
             memory == "request" ? "text-cyan-500" : "hover:bg-gray-600"
-          } rounded-full  bg-gray-800 p-2 ml-2`}
+          } rounded-full  bg-gray-800 p-2`}
           onClick={() => setMemory("request")}
         >
-          Friend requests
+          Requests
         </div>
         <div
           className={`${
             memory == "requested" ? "text-cyan-500" : "hover:bg-gray-600"
-          } rounded-full  bg-gray-800 p-2 ml-2`}
+          } rounded-full  bg-gray-800 p-2`}
           onClick={() => setMemory("requested")}
         >
-          Requested list
+          Requested
         </div>
       </div>
 

@@ -56,11 +56,12 @@ export default function Home({ userDatabase, userId, notun_data }) {
             notun_data={notun_data}
           />
           <div className="mx-auto mb-6">
-            <PostContainer notun_data={notun_data} />
+            <PostContainer notun_data={notun_data} unknown={"Home"} />
           </div>
         </section>
 
         <section className="hidden lg:block text-white font-thin w-3/12 my-5 px-6 overflow-y-scroll sticky right-0 ">
+        <div className={`text-xl font-semibold py-2`}>Contacts  </div>
           <Contacts userDatabase={userDatabase} userId={userId}/>
         </section>
       </div>

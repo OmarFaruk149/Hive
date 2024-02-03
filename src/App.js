@@ -93,7 +93,7 @@ function App() {
                 value={value}
               />
               {value === "UserProfile" ? (
-                <UserProfile userDatabase={userDatabase} mail={mail} />
+                <UserProfile userDatabase={userDatabase} mail={mail} notun_data={notun_data[0]} />
               ) : value === "Chat" ? (
                 <Chat
                   userDatabase={userDatabase}
