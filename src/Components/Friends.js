@@ -14,7 +14,7 @@ export default function Friends({ userDatabase, userId }) {
 
 const requestList = idList && idList.friendRequest
   ? userDatabase.filter((data) => idList.friendRequest[data.id] === true)
-  : null;
+  : [];
   
   const userData = userDatabase[0]
   ? userDatabase.filter((data) => {
@@ -27,7 +27,7 @@ const requestList = idList && idList.friendRequest
 
   const requestedList = idList && idList.requested
   ? userDatabase.filter((data) => idList.requested[data.id] === true)
-  : null;
+  : [];
 
 console.log("userData: ", userData);
 
@@ -52,6 +52,7 @@ console.log("userData: ", userData);
     })
     updateDoc(doc(db,'/userProfileData',userIdToAccept),{
       [`requested.${userId}`]:false,
+      [`friends.${userId}`]: true,
     });
   }
 const handleCancel = (userIdToCancel)=>{

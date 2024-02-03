@@ -42,6 +42,7 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       const val = await getDocs(Location);
+      console.log("valueeeeeee",val.docs)
       setDatabase(() => val.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     };
     fetchData();

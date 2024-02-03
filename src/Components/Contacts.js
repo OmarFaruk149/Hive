@@ -7,13 +7,15 @@ const Contacts = ({ userDatabase, userId }) => {
   : null;
 const userData = idList && idList.friends
   ? userDatabase.filter((data) => idList.friends[data.id] === true)
-  : null;
+  : [];
+
+  console.log(userData);
 
   return (
     <div className="py-6  login-form">
-      <div className="text-xl font-semibold py-4">Contacts {userData.length}</div>
+      <div className="text-xl font-semibold py-4">Contacts  </div>
       <div>
-        {userData[0] &&
+        {userData.length >0  &&
           userData.map((item) => (
             <div
               key={item.id}
