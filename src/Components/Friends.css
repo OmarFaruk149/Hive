@@ -1,0 +1,11 @@
+.Section-1 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; /* Align items with space between them */
+  }
+  
+  /* Adjust the styling as needed */
+  .Find-friend {
+    width: 48%; /* Adjust the width as needed, considering the margin and padding */
+    box-sizing: border-box; /* Include padding and border in the width calculation */
+  }

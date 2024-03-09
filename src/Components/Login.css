@@ -1,0 +1,25 @@
+.login-form {
+    animation: fadeIn 600ms ease-in;
+  }
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background-color: #374151;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
