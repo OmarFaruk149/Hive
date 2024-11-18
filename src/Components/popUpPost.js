@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import UserProfile from "../images/up.svg";
-import upload from "../images/upload.svg";
 import close from "../images/close.svg";
-import { fetchData, imageUpload } from "./FirebaseOperations";
+import { imageUpload } from "./FirebaseOperations";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { db } from "../firebase";
 import "../Components/Login.css";
@@ -18,7 +17,6 @@ const Popup = ({ isOpen, onClose, notun_data }) => {
       try {
         link = await imageUpload(Image, "post");
         setImage(null);
-        console.log("uploaded image " + link);
         console.log("upload success! ");
       } catch (error) {
         console.error("image not uploaded ", error);
@@ -26,22 +24,22 @@ const Popup = ({ isOpen, onClose, notun_data }) => {
     }
 
     try {
-      if(Image || postText.length>1){
-      await addDoc(dbRef, {
-        uploadTime: serverTimestamp(),
-        uid: notun_data.id,
-        postText: postText,
-        post_image: link,
-        user_name: notun_data.name,
-        user_mail: notun_data.email,
-        user_image: notun_data.photo,
-        like_count: 0,
-        liked_by: [],
-      });
+      if (Image || postText.length > 1) {
+        await addDoc(dbRef, {
+          uploadTime: serverTimestamp(),
+          uid: notun_data.id,
+          postText: postText,
+          post_image: link,
+          user_name: notun_data.name,
+          user_mail: notun_data.email,
+          user_image: notun_data.photo,
+          like_count: 0,
+          liked_by: [],
+        });
 
-      console.log("data uploaded successfuly!!!");
-      link = null;}
-      else{
+        console.log("data uploaded successfuly!!!");
+        link = null;
+      } else {
         alert("Not enough data!");
       }
     } catch (error) {
@@ -49,7 +47,6 @@ const Popup = ({ isOpen, onClose, notun_data }) => {
     }
     onClose();
   };
-  console.log(notun_data);
   return (
     <div
       className={`fixed inset-0 z-50 ${
@@ -61,7 +58,7 @@ const Popup = ({ isOpen, onClose, notun_data }) => {
         onClick={onClose}
       ></div>
       <div className="absolute inset-0 flex items-center justify-center">
-        <div className="bg-gray-600 text-gray-200 p-4 rounded-md">
+        <div className="bg-gray-100 text-gray-700 p-4 rounded-md">
           <div className="">
             <button
               className="absolute bg-gray-400 hover:bg-gray-300 rounded-full"
@@ -95,7 +92,7 @@ const Popup = ({ isOpen, onClose, notun_data }) => {
           <div className="">
             <textarea
               value={postText}
-              className="bg-gray-500 p-2 focus:outline-none rounded-md resize-none overflow-auto"
+              className="bg-gray-300 p-2 focus:outline-none rounded-md resize-none overflow-auto"
               name=""
               id=""
               cols="40"
@@ -116,7 +113,11 @@ const Popup = ({ isOpen, onClose, notun_data }) => {
             />
             <label
               htmlFor="fileInput"
-              className={`${Image ? " bg-cyan-400 hover:bg-cyan-500" : " bg-gray-500 hover:bg-gray-400"} p-1 my-1 flex justify-center content-center hover  rounded-md`}
+              className={`${
+                Image
+                  ? " bg-cyan-400 hover:bg-cyan-500"
+                  : " bg-gray-500 hover:bg-gray-400 text-white"
+              } p-1 my-1 flex justify-center content-center hover  rounded-md`}
             >
               {Image ? "Photo selected" : "Upload photo"}
             </label>
@@ -125,7 +126,12 @@ const Popup = ({ isOpen, onClose, notun_data }) => {
             className="flex justify-center bg-cyan-400 hover:bg-cyan-500 content-center rounded-md"
             onClick={handlePost}
           >
-            <button className=" text-white px-4 py-2" onClick={(e)=>e.preventDefault()}>Post</button>
+            <button
+              className=" text-white px-4 py-2"
+              onClick={(e) => e.preventDefault()}
+            >
+              Post
+            </button>
           </div>
         </div>
       </div>

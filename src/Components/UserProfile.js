@@ -14,11 +14,10 @@ export default function UserProfile({ userDatabase, notun_data }) {
   const [memory, setMemory] = useState("");
   const [cover, setCover] = useState(null);
   const [profile, setProfile] = useState(null);
-  
+
   const dbRef = collection(db, "/postContainer");
 
-  const handlePost = async (link,postText) => {
-    
+  const handlePost = async (link, postText) => {
     try {
       await addDoc(dbRef, {
         uploadTime: new Date(),
@@ -33,18 +32,16 @@ export default function UserProfile({ userDatabase, notun_data }) {
       });
 
       console.log("data uploaded successfuly!!!");
-    }
-       catch (error) {
+    } catch (error) {
       console.error("not upload post data , because of ", error);
     }
   };
-
 
   const updateProfile = async () => {
     if (profile) {
       const url = await imageUpload(profile, "photo");
       addPhotoOrCover(notun_data.id, "photo", url);
-      handlePost(url,'Profile picture uploaded');
+      handlePost(url, "Profile picture uploaded");
       setProfile(null);
     }
   };
@@ -52,11 +49,12 @@ export default function UserProfile({ userDatabase, notun_data }) {
     if (cover) {
       const url = await imageUpload(cover, "CoverPhoto");
       addPhotoOrCover(notun_data.id, "coverPhoto", url);
-      handlePost(url,"Cover photo uploaded");
+      handlePost(url, "Cover photo uploaded");
       setCover(null);
     }
   };
-  console.log(notun_data);
+  // console.log(notun_data);
+
   return (
     <>
       <div className="h-full  z-0  login-form bg-gray-600">
@@ -169,14 +167,21 @@ export default function UserProfile({ userDatabase, notun_data }) {
             </div>
           </div>
           <hr className="border-solid border-slate-700 my-4" />
-          <div className={`${memory !== 'friends' ?  "hidden" : ""} w-auto p-2 m-auto flex text-cyan-600 justify-center content-center`}>
+          <div
+            className={`${
+              memory !== "friends" ? "hidden" : ""
+            } w-auto p-2 m-auto flex text-cyan-600 justify-center content-center`}
+          >
             <Contacts userDatabase={userDatabase} userId={notun_data.id} />
           </div>
 
-              <div className={`${memory !== 'timeline' ?  "hidden" : ""}  flex text-cyan-600 justify-center content-center lg:w-1/3`}>
-                    <PostContainer notun_data={notun_data} unknown={'Profile'}/>
-              </div>
-
+          <div
+            className={`${
+              memory !== "timeline" ? "hidden" : ""
+            }  flex text-cyan-600 justify-center content-center lg:w-1/3`}
+          >
+            <PostContainer notun_data={notun_data} unknown={"Profile"} />
+          </div>
         </div>
       </div>
     </>

@@ -42,7 +42,6 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       const val = await getDocs(Location);
-      console.log("valueeeeeee",val.docs)
       setDatabase(() => val.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     };
     fetchData();
@@ -59,7 +58,6 @@ function App() {
         console.log("Logged in");
       } else {
         setLogin(() => false);
-        // setValue(() => "SignUp");
         console.log("Logged out");
       }
     });
@@ -68,7 +66,6 @@ function App() {
   }, []);
 
   useEffect(() => {
-    console.log(isLogin);
   }, [isLogin]);
 
   const notun_data = userDatabase[0]
@@ -78,11 +75,11 @@ function App() {
   return (
     <>
       {loading ? (
-        <div className="flex items-center justify-center h-screen bg-gray-800 text-white">
+        <div className="flex items-center justify-center h-screen bg-gray-100 text-white">
          <LoadingSpinner />
         </div>
       ) : (
-        <div className="bg-gray-700 h-full w-full bg-fixed login-form">
+        <div className="bg-gray-100 h-full w-full bg-fixed login-form">
           {isLogin ? (
             <>
               <Navbar

@@ -66,28 +66,28 @@ const handleCancel = (userIdToCancel)=>{
 console.log("request: " + requestList);
 
   return (
-    <div className=" text-white h-full p-5 bg-gray-700  login-form">
+    <div className="  h-full p-5 bg-gray-100  login-form">
       <div className="Title flex space-x-2">
         <div
           className={`${
-            memory == "friend" ? "text-cyan-500" : "hover:bg-gray-600"
-          } rounded-full  bg-gray-800 p-2`}
+            memory == "friend" ? "text-cyan-500" : "hover:bg-gray-300"
+          } rounded-full  bg-gray-300 p-2`}
           onClick={() => setMemory("friend")}
         >
           Find friends
         </div>
         <div
           className={`${
-            memory == "request" ? "text-cyan-500" : "hover:bg-gray-600"
-          } rounded-full  bg-gray-800 p-2`}
+            memory == "request" ? "text-cyan-500" : "hover:bg-gray-300"
+          } rounded-full  bg-gray-300 p-2`}
           onClick={() => setMemory("request")}
         >
           Requests
         </div>
         <div
           className={`${
-            memory == "requested" ? "text-cyan-500" : "hover:bg-gray-600"
-          } rounded-full  bg-gray-800 p-2`}
+            memory == "requested" ? "text-cyan-500" : "hover:bg-gray-300"
+          } rounded-full  bg-gray-300 p-2`}
           onClick={() => setMemory("requested")}
         >
           Requested
@@ -97,7 +97,7 @@ console.log("request: " + requestList);
       <section className={`Section-1 ${memory !== "friend" ? "hidden" : ""} `}>
         <div className="Find-friend box-border md:flex md:flex-wrap md:justify-between">
           {userData.map((data, index) => (
-            <div className="p-5 text-white rounded-xl bg-gray-800 my-2 w-full md:w-5/12 lg:w-80 ">
+            <div className="p-5  rounded-xl bg-gray-300 my-2 w-full md:w-5/12 lg:w-80 ">
               <div className="flex">
                 <img
                   src={data.photo}
@@ -144,7 +144,7 @@ console.log("request: " + requestList);
       <section className={`Section-2 ${memory !== "request" ? "hidden" : ""} `}>
         <div className="Find-friend box-border md:flex md:flex-wrap md:justify-between">
             { requestList &&  requestList.map((data, index) => (
-            <div className="p-5 text-white rounded-xl bg-gray-800 my-2 w-full md:w-5/12 lg:w-80 ">
+            <div className="p-5  rounded-xl bg-gray-300 my-2 w-full md:w-5/12 lg:w-80 ">
               <div className="flex">
                 <img
                   src={data.photo}
@@ -191,7 +191,7 @@ console.log("request: " + requestList);
       <section className={`Section-3 ${memory !== "requested" ? "hidden" : ""} `}>
         <div className="Find-friend box-border md:flex md:flex-wrap md:justify-between">
             { requestedList &&  requestedList.map((data, index) => (
-            <div className="p-5 text-white rounded-xl bg-gray-800 my-2 w-full md:w-5/12 lg:w-80 ">
+            <div className="p-5  rounded-xl bg-gray-300 my-2 w-full md:w-5/12 lg:w-80 ">
               <div className="flex">
                 <img
                   src={data.photo}

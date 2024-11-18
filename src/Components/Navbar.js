@@ -37,7 +37,7 @@ export default function Navbar({
 
 
   return (
-    <div className="bg-gray-800 text-white py-2 px-5 sticky  top-0 z-50  login-form">
+    <div className="bg-gray-100 text-white py-2 px-5 sticky  top-0 z-50 border-b-2  login-form">
       <nav className="">
         <div className="mx-auto flex justify-between items-center">
           <div className="space-x-2 flex">
@@ -47,7 +47,7 @@ export default function Navbar({
               alt=""
               className="h-11  w-11 p-1 md:ml-6 rounded-full border-2 border-cyan-500 shadow-[0px_1px_15px_rgba(0,_196,_270,_1)]"
             />
-            <div className="hidden md:flex h-auto w-auto text-lg font-semibold text-cyan-300 shadow-[0px_1px_15px_rgba(0,_196,_270,_.7)]  bg-gray-800 rounded-lg p-2">
+            <div className="hidden md:flex h-auto w-auto text-lg font-semibold text-cyan-300 shadow-[0px_1px_15px_rgba(0,_196,_270,_.7)]  bg-gray-100 rounded-lg p-2">
               {notun_data[0] && notun_data[0].name
                 ? notun_data[0].name
                 : "Hive"}
@@ -58,7 +58,7 @@ export default function Navbar({
               className={`hidden sm:flex  Home  ${
                 value === "Home"
                   ? "bg-cyan-400  rounded-full shadow-[0px_1px_15px_rgba(0,_196,_270,_1)] p-1"
-                  : "cursor-pointer button bg-gray-400 hover:bg-gray-300 shadow-[0px_1px_15px_rgba(0,_196,_270,_1)] p-1 rounded-full "
+                  : "cursor-pointer button bg-gray-100 hover:bg-gray-300 shadow-[0px_1px_15px_rgba(0,_196,_270,_1)] p-1 rounded-full "
               } `}
               title="Home"
             >
@@ -73,7 +73,7 @@ export default function Navbar({
               className={`Games  ${
                 value === "Games"
                   ? "bg-cyan-400  rounded-full shadow-[0px_1px_15px_rgba(0,_196,_270,_1)] p-1"
-                  : "cursor-pointer button bg-gray-400 hover:bg-gray-300 shadow-[0px_1px_15px_rgba(0,_196,_270,_1)] p-1 rounded-full "
+                  : "cursor-pointer button bg-gray-100 hover:bg-gray-300 shadow-[0px_1px_15px_rgba(0,_196,_270,_1)] p-1 rounded-full "
               } `}
               title="Games"
             >
@@ -88,7 +88,7 @@ export default function Navbar({
               className={`Contacts  ${
                 value === "Friends"
                   ? "bg-cyan-400  rounded-full shadow-[0px_1px_15px_rgba(0,_196,_270,_1)] p-1"
-                  : "cursor-pointer button bg-gray-400 hover:bg-gray-300 shadow-[0px_1px_15px_rgba(0,_196,_270,_1)] p-1 rounded-full "
+                  : "cursor-pointer button bg-gray-100 hover:bg-gray-300 shadow-[0px_1px_15px_rgba(0,_196,_270,_1)] p-1 rounded-full "
               } `}
               title="User list"
               onClick={() => setValue("Friends")}
@@ -99,7 +99,7 @@ export default function Navbar({
               className={`Chat  ${
                 value === "Chat"
                   ? "bg-cyan-400  rounded-full shadow-[0px_1px_15px_rgba(0,_196,_270,_1)] p-1"
-                  : "cursor-pointer button bg-gray-400 hover:bg-gray-300 shadow-[0px_1px_15px_rgba(0,_196,_270,_1)] p-1 rounded-full "
+                  : "cursor-pointer button bg-gray-100 hover:bg-gray-300 shadow-[0px_1px_15px_rgba(0,_196,_270,_1)] p-1 rounded-full "
               } `}
               title="Chat list"
               onClick={() => setValue("Chat")}
@@ -110,7 +110,7 @@ export default function Navbar({
               className={`Profile  ${
                 value === "UserProfile"
                   ? "bg-cyan-400 p-1  rounded-full shadow-[0px_1px_15px_rgba(0,_196,_270,_1)] "
-                  : " bg-gray-400 hover:bg-gray-300 shadow-[0px_1px_15px_rgba(0,_196,_270,_1)] p-1 rounded-full "
+                  : " bg-gray-100 hover:bg-gray-300 shadow-[0px_1px_15px_rgba(0,_196,_270,_1)] p-1 rounded-full "
               } `}
               title="Profile"
               onClick={() => setValue("UserProfile")}
@@ -129,7 +129,7 @@ export default function Navbar({
               className={`Logout  ${
                 value === "SignUp"
                   ? "bg-cyan-400  rounded-full shadow-[0px_1px_15px_rgba(0,_196,_270,_1)] p-1"
-                  : "mx-auto flex justify-between items-center bg-gray-400 hover:bg-gray-300 shadow-[0px_1px_15px_rgba(0,_196,_270,_1)] p-1 rounded-full "
+                  : "mx-auto flex justify-between items-center bg-gray-100 hover:bg-gray-300 shadow-[0px_1px_15px_rgba(0,_196,_270,_1)] p-1 rounded-full "
               } `}
               title="LogOut"
               onClick={logOut}
