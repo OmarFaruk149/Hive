@@ -6,14 +6,12 @@ import image from "../images/image.svg";
 import Popup from "./popUpPost";
 import "../Components/Login.css";
 
-
 export default function Home({ userDatabase, userId, notun_data }) {
   const [isPopupOpen, setPopupOpen] = useState(false);
 
   return (
-    <div className="  login-form">
-      <div className="flex flex-row  h-screen fixed w-full bg-gray-100 pb-6">
-      
+    <div className="login-form">
+      <div className="flex flex-row h-screen fixed w-full bg-gray-100 pb-6">
         <section className="w-full lg:w-9/12 container overflow-auto">
           <div className="bg-gray-300 p-4 mx-5 rounded-lg mt-6">
             <div className="flex items-center space-x-4 mb-4">
@@ -42,10 +40,10 @@ export default function Home({ userDatabase, userId, notun_data }) {
                 <img
                   src={image}
                   title="picture icons"
-                  alt="Photos/Videos"
-                  className="h-6 w-6 bg-gray-400 rounded-lg "
+                  alt="Photos"
+                  className="h-6 w-6"
                 />
-                <span className=" font-semibold ">Photos/Videos</span>
+                <span className=" font-semibold ">Photos</span>
               </button>
             </div>
           </div>
@@ -53,6 +51,9 @@ export default function Home({ userDatabase, userId, notun_data }) {
             isOpen={isPopupOpen}
             onClose={() => setPopupOpen(false)}
             notun_data={notun_data}
+            prevPostText=""
+            prevPostImage=""
+            postId=""
           />
           <div className="mx-auto mb-6 ">
             <PostContainer notun_data={notun_data} unknown={"Home"} />
@@ -60,8 +61,8 @@ export default function Home({ userDatabase, userId, notun_data }) {
         </section>
 
         <section className="hidden lg:block  font-thin w-3/12 my-5 px-6 overflow-y-scroll sticky right-0 ">
-        <div className={`text-xl font-semibold py-2`}>Contacts  </div>
-          <Contacts userDatabase={userDatabase} userId={userId}/>
+          <div className={`text-xl font-semibold py-2`}>Contacts </div>
+          <Contacts userDatabase={userDatabase} userId={userId} />
         </section>
       </div>
     </div>

@@ -57,9 +57,9 @@ export default function UserProfile({ userDatabase, notun_data }) {
 
   return (
     <>
-      <div className="h-full  z-0  login-form bg-gray-600">
-        <div className="showOff bg-gray-600 relative">
-          <div className="CoverPic relative overflow-hidden">
+      <div className="h-full login-form -z-10 bg-gray-100">
+        <div className="showOff bg-gray-600 ">
+          <div className="CoverPic overflow-hidden">
             <img
               src={
                 notun_data && notun_data.coverPhoto

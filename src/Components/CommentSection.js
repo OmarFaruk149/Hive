@@ -75,6 +75,28 @@ const CommentSection = ({ postID, notun_data }) => {
       setComments(() => data);
     });
   }, []);
+  
+  const getTimeDifference = (uploadedTime) => {
+    const now = new Date();
+    const uploadedDate = uploadedTime.toDate
+      ? uploadedTime.toDate()
+      : new Date(uploadedTime); // Support both Firestore Timestamp and ISO string
+    const diffInMs = now - uploadedDate;
+
+    const seconds = Math.floor(diffInMs / 1000);
+    const minutes = Math.floor(seconds / 60);
+    const hours = Math.floor(minutes / 60);
+    const days = Math.floor(hours / 24);
+    const months = Math.floor(days / 30); // Approximation
+    const years = Math.floor(days / 365); // Approximation
+
+    if (seconds < 60) return `${seconds} sec ago`;
+    if (minutes < 60) return `${minutes} min ago`;
+    if (hours < 24) return `${hours} hr ago`;
+    if (days < 30) return `${days} days ago`;
+    if (months < 12) return `${months} months ago`;
+    return `${years} years ago`;
+  };
 
   return (
     <div className="my-2 max-h-56 overflow-y-auto">
@@ -86,32 +108,38 @@ const CommentSection = ({ postID, notun_data }) => {
               alt={comment.name}
               className="w-8 h-8 rounded-full m-1"
             />
-            <div className="Comment bg-gray-400 p-2 m-1 rounded-xl">
-              <div className="font-semibold  flex justify-between">
-                <div className="text-cyan-600">{comment.name}</div>
-                {notun_data.id === comment.user_id && (
-                  <div className="flex justify-between">
-                    <div className="flex">
+            <div className="Comment bg-gray-200 p-2 m-1 rounded-xl">
+              <div className="">
+                <div className="font-semibold text-cyan-600 flex justify-between space-x-10">
+                  <h1>{comment.name}</h1>
+                  {notun_data.id === comment.user_id && (
+                  <div className="flex">
                       <button
-                        className=" px-2 hover:underline"
+                        className="p-2 rounded-full bg-cyan-400/30 hover:bg-cyan-400/60"
+                        title="Edit comment"
                         onClick={(e) => {
                           e.preventDefault();
                           setComment(comment.text);
-                          setCommentId(()=>comment.id);
+                          setCommentId(() => comment.id);
                         }}
                       >
                         {" "}
-                        <Edit size={16} />{" "}
+                        <Edit size={12} />{" "}
                       </button>
                       <button
-                        className=" pr-2 hover:underline"
+                        className="p-2 ml-1 rounded-full bg-rose-400/30 hover:bg-rose-300"
+                        title="Delete comment"
                         onClick={() => deleteComment(postID, comment.id)}
                       >
-                        <Trash color="#b71f1f" size={16} />
+                        <Trash color="#b71f1f" size={12} />
                       </button>
-                    </div>
+                    
                   </div>
                 )}
+                </div>
+                  <div className="text-gray-500/80 text-xs font-light">
+                    {comment.time && getTimeDifference(comment.time)}
+                  </div>
               </div>
               <div className="text-black">{comment.text}</div>
             </div>

@@ -103,19 +103,19 @@ export default function Chat({ userDatabase, userId }) {
 
   return (
     <>
-      <div className=" login-form flex flex-row text-white h-screen fixed w-full bg-gray-700 ">
-        <div className="section-1 overflow-auto w-2/12 lg:w-3/12 border-r border-gray-800  login-form">
-          <div className="sticky top-0 p-2 bg-gray-700">
+      <div className=" login-form flex flex-row text-white h-screen fixed w-full bg-gray-300 ">
+        <div className="section-1 overflow-auto w-2/12 lg:w-3/12 border-r border-gray-400 text-black  login-form">
+          <div className="sticky top-0 p-2">
             <h1 className="text-lg font-bold">Chat</h1>
           </div>
           <div className="User_list p-1">
             {userData.length > 0 ? (
               userData.map((data, index) => (
                 <div
-                  className={`flex flex-col p-1 lg:flex-row items-center justify-center lg:items-start lg:justify-start hover:text-cyan-400 ${
+                  className={`flex flex-col p-1 lg:flex-row items-center justify-center lg:items-start lg:justify-start hover:text-cyan-600 ${
                     profile === index
-                      ? "bg-gray-800 text-cyan-400 rounded-lg"
-                      : "hover:bg-gray-600 hover:rounded-lg"
+                      ? "bg-black/90 text-cyan-600 rounded-lg"
+                      : "hover:bg-gray-400 text-cyan-600 hover:rounded-lg"
                   }`}
                   onClick={() => {
                     setLoading(() => true);
@@ -135,7 +135,7 @@ export default function Chat({ userDatabase, userId }) {
                     <div className="hidden sm:flex text-xs font-bold font-sans">
                       {data.name}
                     </div>
-                    <div className="hidden lg:flex text-xs font-extralight text-gray-300">
+                    <div className="hidden lg:flex text-xs font-extralight text-white">
                       Hi I'm using Hive.
                     </div>
                   </section>
@@ -150,14 +150,14 @@ export default function Chat({ userDatabase, userId }) {
           {profile !== null ? (
             <>
               {" "}
-              <div className="Navbar sticky top-0 bg-gray-700 border-b border-gray-800 w-full">
-                <div className="Profile-section flex m-1 p-2 hover:text-cyan-500 hover:bg-gray-600 hover:rounded-lg w-1/3">
+              <div className="Navbar sticky top-0 backdrop-blur-lg border-b border-gray-800 w-full">
+                <div className="Profile-section flex m-1 p-2 hover:text-cyan-500 hover:bg-gray-500 hover:rounded-lg w-1/3">
                   <img
                     src={userData[profile].photo}
                     alt={userData[profile].name}
                     className="h-10 w-10 rounded-full"
                   />
-                  <div className="py-2 px-1 mx-1 font-sans font-bold">
+                  <div className="py-2 px-1 mx-1 font-semibold text-cyan-600">
                     {userData[profile].name}
                   </div>
                 </div>
@@ -243,10 +243,10 @@ export default function Chat({ userDatabase, userId }) {
           )}
         </div>
 
-        <div className="section-3 login-form hidden xl:block w-3/12 overflow-auto border-l border-gray-800 p-6">
+        <div className="section-3 login-form hidden xl:block w-3/12 overflow-auto border-l border-gray-400 p-6">
           {profile !== null ? (
             <>
-              <div className="flex flex-col justify-center content-center bg-gray-800 rounded-lg pt-6">
+              <div className="flex flex-col justify-center content-center bg-gray-400 rounded-lg pt-6">
                 <div className="flex justify-center content-center">
                   <img
                     src={userData[profile].photo}
@@ -274,7 +274,7 @@ export default function Chat({ userDatabase, userId }) {
 
                   <div className="flex-1">
                     <button
-                      className="h-10 w-10 bg-gray-600 hover:bg-gray-500 rounded-full"
+                      className="h-10 w-10 bg-gray-500 hover:bg-gray-600 rounded-full"
                       onClick={(event) => event.preventDefault()}
                     >
                       <img src={NotificationIcon} alt="Mute" className="p-1" />

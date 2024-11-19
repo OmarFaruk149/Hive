@@ -10,19 +10,18 @@ const Popup = ({ isOpen, onClose, notun_data }) => {
   const [postText, setPostText] = useState("");
   const [Image, setImage] = useState(null);
   const dbRef = collection(db, "/postContainer");
-
+  const [localImgUrl, setUrl] = useState(null);
   let link = null;
   const handlePost = async () => {
     if (Image) {
       try {
-        link = await imageUpload(Image, "post");
+        link = await imageUpload(Image, "photo");
         setImage(null);
         console.log("upload success! ");
       } catch (error) {
         console.error("image not uploaded ", error);
       }
     }
-
     try {
       if (Image || postText.length > 1) {
         await addDoc(dbRef, {
@@ -46,6 +45,18 @@ const Popup = ({ isOpen, onClose, notun_data }) => {
       console.error("not upload post data , because of ", error);
     }
     onClose();
+  };
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        setImage(file);
+        setUrl(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
   };
   return (
     <div
@@ -104,12 +115,15 @@ const Popup = ({ isOpen, onClose, notun_data }) => {
           <div className="">
             <hr className="" />
           </div>
+          {Image && (
+            <img src={localImgUrl} alt="preview" className="h-16 w-auto" />
+          )}
           <div>
             <input
               type="file"
               id="fileInput"
               className="hidden"
-              onChange={(e) => setImage(e.target.files[0])}
+              onChange={handleImageChange}
             />
             <label
               htmlFor="fileInput"

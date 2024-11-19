@@ -29,7 +29,7 @@ const requestList = idList && idList.friendRequest
   ? userDatabase.filter((data) => idList.requested[data.id] === true)
   : [];
 
-console.log("userData: ", userData);
+// console.log("userData: ", userData);
 
   const userRef = doc(db,"/userProfileData",userId);
 
@@ -63,7 +63,7 @@ const handleCancel = (userIdToCancel)=>{
     [`friendRequest.${userId}`]:false,
   })
 }
-console.log("request: " + requestList);
+// console.log("request: " + requestList);
 
   return (
     <div className="  h-full p-5 bg-gray-100  login-form">

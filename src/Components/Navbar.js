@@ -37,7 +37,7 @@ export default function Navbar({
 
 
   return (
-    <div className="bg-gray-100 text-white py-2 px-5 sticky  top-0 z-50 border-b-2  login-form">
+    <div className="backdrop-blur-xl text-white py-2 px-5 sticky z-`0 top-0  login-form">
       <nav className="">
         <div className="mx-auto flex justify-between items-center">
           <div className="space-x-2 flex">
